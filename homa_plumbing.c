@@ -1139,6 +1139,7 @@ int homa_sendmsg(struct sock *sk, struct msghdr *msg, size_t length)
 	union sockaddr_in_union *addr;
 	struct homa_rpc *rpc = NULL;
 	int result = 0;
+	int einval_line = 0;
 
 	IF_NO_STRIP(u64 start = homa_clock());
 	IF_NO_STRIP(u64 finish);
@@ -1151,6 +1152,7 @@ int homa_sendmsg(struct sock *sk, struct msghdr *msg, size_t length)
 	addr = (union sockaddr_in_union *)msg->msg_name;
 	if (!addr) {
 		hsk->error_msg = "no msg_name passed to sendmsg";
+		einval_line = __LINE__;
 		result = -EINVAL;
 		goto error;
 	}
@@ -1158,6 +1160,7 @@ int homa_sendmsg(struct sock *sk, struct msghdr *msg, size_t length)
 	if (unlikely(!msg->msg_control_is_user)) {
 		tt_record("homa_sendmsg error: !msg->msg_control_is_user");
 		hsk->error_msg = "msg_control argument for sendmsg isn't in user space";
+		einval_line = __LINE__;
 		result = -EINVAL;
 		goto error;
 	}
@@ -1170,6 +1173,7 @@ int homa_sendmsg(struct sock *sk, struct msghdr *msg, size_t length)
 	if (args.flags & ~HOMA_SENDMSG_VALID_FLAGS ||
 	    args.reserved != 0) {
 		hsk->error_msg = "reserved fields in homa_sendmsg_args must be zero";
+		einval_line = __LINE__;
 		result = -EINVAL;
 		goto error;
 	}
@@ -1178,6 +1182,8 @@ int homa_sendmsg(struct sock *sk, struct msghdr *msg, size_t length)
 		result = homa_sock_wait_wmem(hsk,
 					     msg->msg_flags & MSG_DONTWAIT);
 		if (result != 0) {
+			if (result == -EINVAL)
+				einval_line = __LINE__;
 			goto error;
 		}
 	}
@@ -1191,6 +1197,7 @@ int homa_sendmsg(struct sock *sk, struct msghdr *msg, size_t length)
 	    (msg->msg_namelen < sizeof(struct sockaddr_in6) &&
 	     addr->in6.sin6_family == AF_INET6)) {
 		hsk->error_msg = "msg_namelen too short";
+		einval_line = __LINE__;
 		result = -EINVAL;
 		goto error;
 	}
@@ -1200,6 +1207,8 @@ int homa_sendmsg(struct sock *sk, struct msghdr *msg, size_t length)
 		rpc = homa_rpc_alloc_client(hsk, addr);
 		if (IS_ERR(rpc)) {
 			result = PTR_ERR(rpc);
+			if (result == -EINVAL)
+				einval_line = __LINE__;
 			rpc = NULL;
 			goto error;
 		}
@@ -1214,8 +1223,11 @@ int homa_sendmsg(struct sock *sk, struct msghdr *msg, size_t length)
 			   ntohs(addr->in6.sin6_port), rpc->id, length);
 		rpc->completion_cookie = args.completion_cookie;
 		result = homa_message_out_fill(rpc, &msg->msg_iter, 1);
-		if (result)
+		if (result) {
+			if (result == -EINVAL)
+				einval_line = __LINE__;
 			goto error;
+		}
 		args.id = rpc->id;
 		homa_rpc_unlock(rpc); /* Locked by homa_rpc_alloc_client. */
 
@@ -1242,6 +1254,7 @@ int homa_sendmsg(struct sock *sk, struct msghdr *msg, size_t length)
 			   args.id, hsk->port, current->pid, length);
 		if (args.completion_cookie != 0) {
 			hsk->error_msg = "completion_cookie must be zero when sending responses";
+			einval_line = __LINE__;
 			result = -EINVAL;
 			goto error;
 		}
@@ -1259,18 +1272,24 @@ int homa_sendmsg(struct sock *sk, struct msghdr *msg, size_t length)
 		if (rpc->error) {
 			hsk->error_msg = "RPC has failed, so can't send response";
 			result = rpc->error;
+			if (result == -EINVAL)
+				einval_line = __LINE__;
 			goto error;
 		}
 		if (rpc->state != RPC_IN_SERVICE) {
 			hsk->error_msg = "RPC is not in a state where a response can be sent";
+			einval_line = __LINE__;
 			result = -EINVAL;
 			goto error_dont_end_rpc;
 		}
 		rpc->state = RPC_OUTGOING;
 
 		result = homa_message_out_fill(rpc, &msg->msg_iter, 1);
-		if (result && rpc->state != RPC_DEAD)
+		if (result && rpc->state != RPC_DEAD) {
+			if (result == -EINVAL)
+				einval_line = __LINE__;
 			goto error;
+		}
 		homa_rpc_put(rpc);
 		homa_rpc_unlock(rpc); /* Locked by homa_rpc_find_server. */
 #ifndef __STRIP__ /* See strip.py */
@@ -1294,6 +1313,9 @@ error_dont_end_rpc:
 		/* Locked by homa_rpc_find_server or homa_rpc_alloc_client. */
 		homa_rpc_unlock(rpc);
 	}
+	if (result == -EINVAL)
+		printk(KERN_ERR "homa_sendmsg returning EINVAL at line %d\n",
+		       einval_line ? einval_line : __LINE__);
 	tt_record2("homa_sendmsg returning error %d for id %d",
 		   result, args.id);
 	return result;
