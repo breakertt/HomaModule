@@ -1285,6 +1285,8 @@ void homa_rpc_handoff(struct homa_rpc *rpc)
 	struct homa_sock *hsk = rpc->hsk;
 	struct homa_interest *interest;
 
+	INC_METRIC(handoff_count, 1);
+
 	if (test_bit(RPC_PRIVATE, &rpc->flags)) {
 		homa_interest_notify_private(rpc);
 		return;

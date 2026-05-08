@@ -215,6 +215,9 @@ struct homa_metrics {
 	 */
 	u64 responses_received;
 
+	/* issue #77 probe */
+	u64 handoff_count;
+
 	/**
 	 * @wait_none: total number of times that an incoming message was
 	 * already waiting when recvmsg was invoked.
