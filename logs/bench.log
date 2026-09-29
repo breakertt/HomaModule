@@ -1,0 +1,51 @@
+# nic node1 mode=tuned: ko_md5=665b4f8fc87d srcver=67209D508FA06400C737416 kernel=6.17.8-061708-generic mlx5=/lib/modules/6.17.8-061708-generic/kernel/drivers/net/ethernet/mellanox/mlx5/core/mlx5_core.ko.zst fw=22.43.2566 numa=0 ip=10.0.1.2 rules=0 irq_cores=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, xps_tx0=00000001 rss=0, channels=16 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 ntuple=off rps_rx0=0000ffff rfs=32768 flowcnt_rx0=2048 no_turbo=0 gov=performance cstates_on=POLL,C1,C1E,C6, homa:num_priorities=8,link_mbps=100000,max_nic_est_backlog_usecs=5,gro_policy=114,gro_busy_usecs=5,poll_usecs=50,unsched_bytes=60000,max_incoming=1600000,max_gso_size=100000
+# nic node0 mode=tuned: ko_md5=665b4f8fc87d srcver=67209D508FA06400C737416 kernel=6.17.8-061708-generic mlx5=/lib/modules/6.17.8-061708-generic/kernel/drivers/net/ethernet/mellanox/mlx5/core/mlx5_core.ko.zst fw=22.41.1000 numa=0 ip=10.0.1.1 rules=0 irq_cores=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, xps_tx0=00000001 rss=0, channels=16 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 ntuple=off rps_rx0=0000ffff rfs=32768 flowcnt_rx0=2048 no_turbo=0 gov=performance cstates_on=POLL,C1,C1E,C6, homa:num_priorities=8,link_mbps=100000,max_nic_est_backlog_usecs=5,gro_policy=114,gro_busy_usecs=5,poll_usecs=50,unsched_bytes=60000,max_incoming=1600000,max_gso_size=100000
+CP base C:6:192:2 rep=1 kops=1195.5 p99=78.3 p50=43.45 p999=136.4
+CP base C:6:192:2 rep=2 kops=1190.3 p99=73.2 p50=43.07 p999=159.8
+CP base C:6:192:2 rep=3 kops=1206.2 p99=84.5 p50=44.09 p999=316.2
+CP base C:6:384:2 rep=1 kops=1195.0 p99=75.4 p50=42.93 p999=111.0
+CP base C:6:384:2 rep=2 kops=1195.4 p99=74.0 p50=44.04 p999=94.7
+CP base C:6:384:2 rep=3 kops=1197.7 p99=85.4 p50=43.44 p999=192.1
+CP base C:6:768:2 rep=1 kops=1205.3 p99=80.7 p50=44.26 p999=170.0
+CP base C:6:768:2 rep=2 kops=1199.2 p99=78.4 p50=43.51 p999=108.3
+CP base C:6:768:2 rep=3 kops=1188.5 p99=75.2 p50=43.00 p999=145.3
+CP base C:6:384:2:64 rep=1 kops=1193.1 p99=79.1 p50=43.40 p999=132.8
+CP base C:6:384:2:64 rep=2 kops=1184.3 p99=72.8 p50=43.44 p999=92.3
+CP base C:6:384:2:64 rep=3 kops=1189.6 p99=76.2 p50=43.26 p999=147.3
+CP base C:4:256:3:100:2 rep=1 kops=873.2 p99=59.3 p50=37.27 p999=70.7
+CP base C:4:256:3:100:2 rep=2 kops=866.0 p99=59.7 p50=37.20 p999=72.3
+CP base C:4:256:3:100:2 rep=3 kops=861.8 p99=59.0 p50=37.22 p999=71.2
+# nic node1 mode=tuned: ko_md5=98a009997482 srcver=3120066748174EC9284598A kernel=6.17.8-061708-generic mlx5=/lib/modules/6.17.8-061708-generic/kernel/drivers/net/ethernet/mellanox/mlx5/core/mlx5_core.ko.zst fw=22.43.2566 numa=0 ip=10.0.1.2 rules=0 irq_cores=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, xps_tx0=00000001 rss=0, channels=16 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 ntuple=off rps_rx0=0000ffff rfs=32768 flowcnt_rx0=2048 no_turbo=0 gov=performance cstates_on=POLL,C1,C1E,C6, homa:num_priorities=8,link_mbps=100000,max_nic_est_backlog_usecs=5,gro_policy=114,gro_busy_usecs=5,poll_usecs=50,unsched_bytes=60000,max_incoming=1600000,max_gso_size=100000
+# nic node0 mode=tuned: ko_md5=98a009997482 srcver=3120066748174EC9284598A kernel=6.17.8-061708-generic mlx5=/lib/modules/6.17.8-061708-generic/kernel/drivers/net/ethernet/mellanox/mlx5/core/mlx5_core.ko.zst fw=22.41.1000 numa=0 ip=10.0.1.1 rules=0 irq_cores=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, xps_tx0=00000001 rss=0, channels=16 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 ntuple=off rps_rx0=0000ffff rfs=32768 flowcnt_rx0=2048 no_turbo=0 gov=performance cstates_on=POLL,C1,C1E,C6, homa:num_priorities=8,link_mbps=100000,max_nic_est_backlog_usecs=5,gro_policy=114,gro_busy_usecs=5,poll_usecs=50,unsched_bytes=60000,max_incoming=1600000,max_gso_size=100000
+CP patch C:6:192:2 rep=1 kops=1229.3 p99=86.1 p50=43.81 p999=211.7
+CP patch C:6:192:2 rep=2 kops=1227.2 p99=78.5 p50=43.64 p999=116.4
+CP patch C:6:192:2 rep=3 kops=1222.3 p99=74.1 p50=43.71 p999=113.1
+CP patch C:6:384:2 rep=1 kops=1209.5 p99=74.1 p50=43.42 p999=98.0
+CP patch C:6:384:2 rep=2 kops=1218.1 p99=74.3 p50=43.90 p999=96.8
+CP patch C:6:384:2 rep=3 kops=1223.9 p99=72.7 p50=44.27 p999=91.7
+CP patch C:6:768:2 rep=1 kops=1225.2 p99=76.8 p50=43.66 p999=110.6
+CP patch C:6:768:2 rep=2 kops=1221.7 p99=74.1 p50=44.10 p999=118.3
+CP patch C:6:768:2 rep=3 kops=1219.4 p99=80.4 p50=43.97 p999=159.0
+CP patch C:6:384:2:64 rep=1 kops=1242.8 p99=88.0 p50=43.96 p999=146.0
+CP patch C:6:384:2:64 rep=2 kops=1226.0 p99=77.8 p50=43.63 p999=122.0
+CP patch C:6:384:2:64 rep=3 kops=1211.2 p99=75.2 p50=43.13 p999=101.8
+CP patch C:4:256:3:100:2 rep=1 kops=877.6 p99=59.7 p50=37.20 p999=72.5
+CP patch C:4:256:3:100:2 rep=2 kops=866.9 p99=59.4 p50=37.14 p999=120.1
+CP patch C:4:256:3:100:2 rep=3 kops=878.6 p99=59.5 p50=37.18 p999=70.7
+# nic node1 mode=tuned: ko_md5=665b4f8fc87d srcver=67209D508FA06400C737416 kernel=6.17.8-061708-generic mlx5=/lib/modules/6.17.8-061708-generic/kernel/drivers/net/ethernet/mellanox/mlx5/core/mlx5_core.ko.zst fw=22.43.2566 numa=0 ip=10.0.1.2 rules=0 irq_cores=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, xps_tx0=00000001 rss=0, channels=16 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 ntuple=off rps_rx0=0000ffff rfs=32768 flowcnt_rx0=2048 no_turbo=0 gov=performance cstates_on=POLL,C1,C1E,C6, homa:num_priorities=8,link_mbps=100000,max_nic_est_backlog_usecs=5,gro_policy=114,gro_busy_usecs=5,poll_usecs=50,unsched_bytes=60000,max_incoming=1600000,max_gso_size=100000
+# nic node0 mode=tuned: ko_md5=665b4f8fc87d srcver=67209D508FA06400C737416 kernel=6.17.8-061708-generic mlx5=/lib/modules/6.17.8-061708-generic/kernel/drivers/net/ethernet/mellanox/mlx5/core/mlx5_core.ko.zst fw=22.41.1000 numa=0 ip=10.0.1.1 rules=0 irq_cores=0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, xps_tx0=00000001 rss=0, channels=16 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 ntuple=off rps_rx0=0000ffff rfs=32768 flowcnt_rx0=2048 no_turbo=0 gov=performance cstates_on=POLL,C1,C1E,C6, homa:num_priorities=8,link_mbps=100000,max_nic_est_backlog_usecs=5,gro_policy=114,gro_busy_usecs=5,poll_usecs=50,unsched_bytes=60000,max_incoming=1600000,max_gso_size=100000
+CP base C:6:192:2 rep=1 kops=1197.1 p99=78.0 p50=43.76 p999=130.8
+CP base C:6:192:2 rep=2 kops=1200.6 p99=78.9 p50=43.73 p999=123.6
+CP base C:6:192:2 rep=3 kops=1193.1 p99=74.1 p50=43.67 p999=95.8
+CP base C:6:384:2 rep=1 kops=1189.1 p99=78.4 p50=43.81 p999=209.1
+CP base C:6:384:2 rep=2 kops=1190.3 p99=86.2 p50=43.54 p999=235.7
+CP base C:6:384:2 rep=3 kops=1184.9 p99=74.4 p50=43.98 p999=160.1
+CP base C:6:768:2 rep=1 kops=1193.0 p99=73.3 p50=43.76 p999=101.4
+CP base C:6:768:2 rep=2 kops=1197.5 p99=79.4 p50=42.91 p999=145.3
+CP base C:6:768:2 rep=3 kops=1194.0 p99=82.1 p50=43.49 p999=160.8
+CP base C:6:384:2:64 rep=1 kops=1200.8 p99=78.5 p50=44.07 p999=139.4
+CP base C:6:384:2:64 rep=2 kops=1199.7 p99=123.0 p50=43.58 p999=252.4
+CP base C:6:384:2:64 rep=3 kops=1200.1 p99=76.3 p50=44.23 p999=99.6
+CP base C:4:256:3:100:2 rep=1 kops=858.2 p99=60.6 p50=37.12 p999=115.6
+CP base C:4:256:3:100:2 rep=2 kops=867.5 p99=60.4 p50=37.29 p999=159.0
+CP base C:4:256:3:100:2 rep=3 kops=859.9 p99=58.9 p50=37.16 p999=93.4
