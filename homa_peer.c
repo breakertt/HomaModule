@@ -240,6 +240,14 @@ struct homa_peer *homa_peer_alloc(struct homa_sock *hsk,
 		hsk->error_msg = "couldn't allocate memory for homa_peer";
 		return (struct homa_peer *)ERR_PTR(-ENOMEM);
 	}
+	peer->acks = alloc_percpu_gfp(struct homa_ack_bank,
+				      GFP_ATOMIC | __GFP_ZERO);
+	if (!peer->acks) {
+		kfree(peer);
+		INC_METRIC(peer_kmalloc_errors, 1);
+		hsk->error_msg = "couldn't allocate memory for homa_peer";
+		return (struct homa_peer *)ERR_PTR(-ENOMEM);
+	}
 	peer->ht_key.addr = *addr;
 	peer->ht_key.hnet = hsk->hnet;
 	refcount_set(&peer->refs, 1);
@@ -265,6 +273,7 @@ struct homa_peer *homa_peer_alloc(struct homa_sock *hsk,
  */
 void homa_peer_free(struct homa_peer *peer)
 {
+	free_percpu(peer->acks);
 	kfree(peer);
 }
 
@@ -769,26 +778,27 @@ void homa_peer_lock_slow(struct homa_peer *peer)
 void homa_peer_add_ack(struct homa_rpc *rpc)
 	__must_hold(rpc->bucket->lock)
 {
-	struct homa_peer *peer = rpc->route->peer;
+	struct homa_ack_bank *bank;
 	struct homa_ack_hdr ack;
 
-	homa_peer_lock(peer);
-	if (peer->num_acks < HOMA_MAX_ACKS_PER_PKT) {
-		peer->acks[peer->num_acks].client_id = cpu_to_be64(rpc->id);
-		peer->acks[peer->num_acks].server_port = htons(rpc->dport);
-		peer->num_acks++;
-		homa_peer_unlock(peer);
+	local_bh_disable();
+	bank = this_cpu_ptr(rpc->route->peer->acks);
+	if (bank->num_acks < HOMA_MAX_ACKS_PER_PKT) {
+		bank->acks[bank->num_acks].client_id = cpu_to_be64(rpc->id);
+		bank->acks[bank->num_acks].server_port = htons(rpc->dport);
+		bank->num_acks++;
+		local_bh_enable();
 		return;
 	}
 
-	/* The peer has filled up; send an ACK message to empty it. The
-	 * RPC in the message header will also be considered ACKed.
+	/* This CPU's bank has filled up; send an ACK message to empty it.
+	 * The RPC in the message header will also be considered ACKed.
 	 */
 	INC_METRIC(ack_overflows, 1);
-	memcpy(ack.acks, peer->acks, sizeof(peer->acks));
-	ack.num_acks = htons(peer->num_acks);
-	peer->num_acks = 0;
-	homa_peer_unlock(peer);
+	memcpy(ack.acks, bank->acks, sizeof(bank->acks));
+	ack.num_acks = htons(bank->num_acks);
+	bank->num_acks = 0;
+	local_bh_enable();
 	homa_xmit_control(ACK, &ack, sizeof(ack), rpc);
 }
 
@@ -803,19 +813,19 @@ void homa_peer_add_ack(struct homa_rpc *rpc)
  */
 int homa_peer_get_acks(struct homa_peer *peer, int count, struct homa_ack *dst)
 {
-	/* Don't waste time acquiring the lock if there are no ids available. */
-	if (peer->num_acks == 0)
-		return 0;
+	struct homa_ack_bank *bank;
 
-	homa_peer_lock(peer);
-
-	if (count > peer->num_acks)
-		count = peer->num_acks;
-	memcpy(dst, &peer->acks[peer->num_acks - count],
-	       count * sizeof(peer->acks[0]));
-	peer->num_acks -= count;
-
-	homa_peer_unlock(peer);
+	/* Only this CPU's bank is drained; the others drain through their
+	 * own transmissions.
+	 */
+	local_bh_disable();
+	bank = this_cpu_ptr(peer->acks);
+	if (count > bank->num_acks)
+		count = bank->num_acks;
+	memcpy(dst, &bank->acks[bank->num_acks - count],
+	       count * sizeof(bank->acks[0]));
+	bank->num_acks -= count;
+	local_bh_enable();
 	return count;
 }
 

@@ -127,6 +127,17 @@ struct homa_peer_key {
 };
 
 /**
+ * struct homa_ack_bank - One CPU's share of the acks for a peer.
+ */
+struct homa_ack_bank {
+	/** @num_acks: number of (initial) entries in @acks that are valid. */
+	int num_acks;
+
+	/** @acks: client RPCs whose results have been completely received. */
+	struct homa_ack acks[HOMA_MAX_ACKS_PER_PKT];
+};
+
+/**
  * struct homa_peer - One of these objects exists for each machine that we
  * have communicated with (either as client or server). This struct contains
  * information that is common to all uses of the peer.
@@ -157,22 +168,18 @@ struct homa_peer {
 	struct rhash_head ht_linkage;
 
 	/**
-	 * @lock: used to synchronize access to fields in this struct, such
-	 * as @num_acks, @acks, @dst, and @dst_cookie.
+	 * @lock: used to synchronize access to fields in this struct.
 	 */
 	spinlock_t lock ____cacheline_aligned_in_smp;
 
 	/**
-	 * @num_acks: the number of (initial) entries in @acks that
-	 * currently hold valid information.
+	 * @acks: per-CPU banks of client RPCs whose results have been
+	 * completely received. Filled by homa_peer_add_ack and drained by
+	 * homa_peer_get_acks on the same CPU, so neither shares a line with
+	 * other cores; an ack stranded on a CPU that stops transmitting is
+	 * recovered by the NEED_ACK protocol. Guarded by local_bh_disable.
 	 */
-	int num_acks;
-
-	/**
-	 * @acks: info about client RPCs whose results have been completely
-	 * received.
-	 */
-	struct homa_ack acks[HOMA_MAX_ACKS_PER_PKT];
+	struct homa_ack_bank __percpu *acks;
 
 #ifndef __STRIP__ /* See strip.py */
 	/**
