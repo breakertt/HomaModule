@@ -576,6 +576,61 @@ TEST_F(homa_peer, homa_route__write_hot_fields_on_own_cacheline)
 	EXPECT_EQ(offsetof(struct homa_route, refs) / L1_CACHE_BYTES,
 		  offsetof(struct homa_route, access_jiffies) / L1_CACHE_BYTES);
 }
+TEST_F(homa_peer, homa_route_get_dst__fills_and_reuses_this_cpus_slot)
+{
+	struct homa_route *route = homa_route_get(&self->hsk, ip1111);
+	struct dst_entry *dst1, *dst2;
+
+	ASSERT_FALSE(IS_ERR(route));
+	mock_set_core(1);
+	EXPECT_EQ(NULL, per_cpu_ptr(route->dst_slots, 1)->dst);
+	dst1 = homa_route_get_dst(route, &self->hsk);
+	EXPECT_EQ(dst1, per_cpu_ptr(route->dst_slots, 1)->dst);
+	EXPECT_NE(dst1, route->dst);
+	dst2 = homa_route_get_dst(route, &self->hsk);
+	EXPECT_EQ(dst1, dst2);
+
+	/* Another CPU gets its own dst. */
+	mock_set_core(2);
+	dst2 = homa_route_get_dst(route, &self->hsk);
+	EXPECT_NE(dst1, dst2);
+	EXPECT_EQ(dst2, per_cpu_ptr(route->dst_slots, 2)->dst);
+	dst_release(dst1);
+	dst_release(dst1);
+	dst_release(dst2);
+	homa_route_release(route);
+}
+TEST_F(homa_peer, homa_route_get_dst__refills_stale_slot)
+{
+	struct homa_route *route = homa_route_get(&self->hsk, ip1111);
+	struct dst_entry *old, *dst;
+
+	ASSERT_FALSE(IS_ERR(route));
+	mock_set_core(1);
+	old = homa_route_get_dst(route, &self->hsk);
+	dst_release(old);
+	old->obsolete = DST_OBSOLETE_FORCE_CHK;
+	mock_dst_check_errors = 1;
+	dst = homa_route_get_dst(route, &self->hsk);
+	EXPECT_NE(old, dst);
+	EXPECT_EQ(dst, per_cpu_ptr(route->dst_slots, 1)->dst);
+	dst_release(dst);
+	homa_route_release(route);
+}
+TEST_F(homa_peer, homa_route_get_dst__lookup_fails_uses_route_dst)
+{
+	struct homa_route *route = homa_route_get(&self->hsk, ip1111);
+	struct dst_entry *dst;
+
+	ASSERT_FALSE(IS_ERR(route));
+	mock_set_core(1);
+	mock_route_errors = 1;
+	dst = homa_route_get_dst(route, &self->hsk);
+	EXPECT_EQ(route->dst, dst);
+	EXPECT_EQ(NULL, per_cpu_ptr(route->dst_slots, 1)->dst);
+	dst_release(dst);
+	homa_route_release(route);
+}
 TEST_F(homa_peer, homa_route_gc__basics)
 {
 	struct homa_peertab *peertab = self->homa.peertab;
@@ -969,6 +1024,66 @@ TEST_F(homa_peer, homa_peer_get_acks)
 	EXPECT_STREQ("server_port 5000, client_id 100",
 			unit_ack_string(&acks[0]));
 	homa_route_release(route);
+}
+TEST_F(homa_peer, homa_peer_add_ack__banks_are_per_cpu)
+{
+	struct homa_rpc *crpc1 = unit_client_rpc(&self->hsk, UNIT_OUTGOING,
+		self->client_ip, self->server_ip, self->server_port,
+		101, 100, 100);
+	struct homa_rpc *crpc2 = unit_client_rpc(&self->hsk, UNIT_OUTGOING,
+		self->client_ip, self->server_ip, self->server_port,
+		102, 100, 100);
+	struct homa_peer *peer = crpc1->route->peer;
+	struct homa_ack acks[HOMA_MAX_ACKS_PER_PKT];
+
+	mock_set_core(1);
+	homa_rpc_lock(crpc1);
+	homa_peer_add_ack(crpc1);
+	homa_rpc_unlock(crpc1);
+	mock_set_core(2);
+	homa_rpc_lock(crpc2);
+	homa_peer_add_ack(crpc2);
+	homa_rpc_unlock(crpc2);
+	EXPECT_EQ(1, per_cpu_ptr(peer->acks, 1)->num_acks);
+	EXPECT_EQ(1, per_cpu_ptr(peer->acks, 2)->num_acks);
+
+	/* Each CPU drains only its own bank. */
+	EXPECT_EQ(1, homa_peer_get_acks(peer, HOMA_MAX_ACKS_PER_PKT, acks));
+	EXPECT_STREQ("server_port 99, client_id 102", unit_ack_string(&acks[0]));
+	EXPECT_EQ(0, homa_peer_get_acks(peer, HOMA_MAX_ACKS_PER_PKT, acks));
+	EXPECT_EQ(1, per_cpu_ptr(peer->acks, 1)->num_acks);
+	mock_set_core(1);
+	EXPECT_EQ(1, homa_peer_get_acks(peer, HOMA_MAX_ACKS_PER_PKT, acks));
+	EXPECT_STREQ("server_port 99, client_id 101", unit_ack_string(&acks[0]));
+}
+TEST_F(homa_peer, homa_peer_add_ack__overflow_sends_only_this_cpus_bank)
+{
+	struct homa_rpc *crpc = unit_client_rpc(&self->hsk, UNIT_OUTGOING,
+		self->client_ip, self->server_ip, self->server_port,
+		103, 100, 100);
+	struct homa_peer *peer = crpc->route->peer;
+	int i;
+
+	mock_set_core(2);
+	per_cpu_ptr(peer->acks, 2)->num_acks = 1;
+	per_cpu_ptr(peer->acks, 2)->acks[0] = (struct homa_ack) {
+			.server_port = htons(self->server_port),
+			.client_id = cpu_to_be64(80)};
+	mock_set_core(1);
+	for (i = 0; i < HOMA_MAX_ACKS_PER_PKT; i++)
+		per_cpu_ptr(peer->acks, 1)->acks[i] = (struct homa_ack) {
+				.server_port = htons(self->server_port),
+				.client_id = cpu_to_be64(90 + i)};
+	per_cpu_ptr(peer->acks, 1)->num_acks = HOMA_MAX_ACKS_PER_PKT;
+
+	unit_log_clear();
+	homa_rpc_lock(crpc);
+	homa_peer_add_ack(crpc);
+	homa_rpc_unlock(crpc);
+	EXPECT_EQ(0, per_cpu_ptr(peer->acks, 1)->num_acks);
+	EXPECT_EQ(1, per_cpu_ptr(peer->acks, 2)->num_acks);
+	EXPECT_SUBSTR("xmit ACK", unit_log_get());
+	EXPECT_NOSUBSTR("id 80", unit_log_get());
 }
 
 TEST_F(homa_peer, homa_peer_update_sysctl_deps)

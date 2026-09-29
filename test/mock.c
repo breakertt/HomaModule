@@ -338,6 +338,9 @@ unsigned long ex_handler_refcount;
 struct net init_net;
 unsigned long volatile jiffies = 1100;
 unsigned int nr_cpu_ids = 8;
+
+/* CPUs 0..nr_cpu_ids-1 are possible (for for_each_possible_cpu). */
+struct cpumask __cpu_possible_mask = {.bits = {0xff}};
 unsigned long page_offset_base;
 unsigned long phys_base;
 unsigned long vmemmap_base;
@@ -2474,6 +2477,16 @@ void mock_set_clock_vals(u64 t, ...)
 	}
 	va_end(args);
 	mock_next_clock_val = 0;
+}
+
+/* Minimal bit search for for_each_possible_cpu. */
+unsigned long _find_next_bit(const unsigned long *addr, unsigned long nbits,
+			     unsigned long start)
+{
+	for (; start < nbits; start++)
+		if (addr[start / BITS_PER_LONG] & (1UL << (start % BITS_PER_LONG)))
+			return start;
+	return nbits;
 }
 
 /**
