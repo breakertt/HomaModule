@@ -350,6 +350,14 @@ struct homa_route *homa_route_alloc(struct homa_sock *hsk,
 		hsk->error_msg = "couldn't allocate memory for homa_route";
 		return ERR_PTR(-ENOMEM);
 	}
+	route->dst_slots = alloc_percpu_gfp(struct homa_dst_slot,
+					    GFP_ATOMIC | __GFP_ZERO);
+	if (!route->dst_slots) {
+		kfree(route);
+		INC_METRIC(peer_kmalloc_errors, 1);
+		hsk->error_msg = "couldn't allocate memory for homa_route";
+		return ERR_PTR(-ENOMEM);
+	}
 	spin_lock_init(&route->lock);
 	refcount_set(&route->refs, 1);
 	route->access_jiffies = jiffies;
@@ -399,8 +407,63 @@ struct homa_route *homa_route_alloc(struct homa_sock *hsk,
 error:
 	hsk->error_msg = "couldn't find route for peer";
 	INC_METRIC(peer_route_errors, 1);
+	free_percpu(route->dst_slots);
 	kfree(route);
 	return ERR_PTR(err);
+}
+
+/**
+ * homa_route_get_dst() - Return a dst_entry for transmitting a packet on
+ * @route, preferring this CPU's own copy (see @dst_slots in homa_route).
+ * @route:   Route on which a packet will be sent.
+ * @hsk:     Socket on which the packet will be sent.
+ * Return:   A dst_entry; the caller owns a reference on it.
+ */
+struct dst_entry *homa_route_get_dst(struct homa_route *route,
+				     struct homa_sock *hsk)
+{
+	struct homa_dst_slot *slot;
+	struct dst_entry *dst;
+	struct flowi flow;
+
+	local_bh_disable();
+	slot = this_cpu_ptr(route->dst_slots);
+	dst = slot->dst;
+	if (unlikely(!dst || !dst_check(dst, slot->cookie))) {
+		dst_release(dst);
+		slot->dst = NULL;
+		flow = route->flow;
+		if (ipv6_addr_v4mapped(&route->key.daddr)) {
+			struct rtable *rt;
+
+			rt = ip_route_output_flow(sock_net(&hsk->sock),
+						  &flow.u.ip4, &hsk->sock);
+			if (!IS_ERR(rt)) {
+				slot->dst = &rt->dst;
+				slot->cookie = 0;
+			}
+		} else {
+			dst = ip6_dst_lookup_flow(sock_net(&hsk->sock),
+						  &hsk->sock, &flow.u.ip6, NULL);
+			if (!IS_ERR(dst)) {
+				slot->dst = dst;
+				slot->cookie = rt6_get_cookie(dst_rt6_info(dst));
+			}
+		}
+		dst = slot->dst;
+		if (!dst) {
+			/* Lookup failed: fall back to the shared entry. */
+			local_bh_enable();
+			rcu_read_lock();
+			dst = rcu_dereference(route->dst);
+			dst_hold(dst);
+			rcu_read_unlock();
+			return dst;
+		}
+	}
+	dst_hold(dst);
+	local_bh_enable();
+	return dst;
 }
 
 /**
@@ -415,8 +478,13 @@ void homa_route_free(struct rcu_head *head)
 {
 	struct homa_route *route;
 
+	int cpu;
+
 	route = container_of(head, struct homa_route, rcu_head);
 	dst_release(rcu_dereference_protected(route->dst, 1));
+	for_each_possible_cpu(cpu)
+		dst_release(per_cpu_ptr(route->dst_slots, cpu)->dst);
+	free_percpu(route->dst_slots);
 	spin_lock_bh(&route->key.hnet->homa->peertab->lock);
 	homa_peer_unlink(route);
 	spin_unlock_bh(&route->key.hnet->homa->peertab->lock);

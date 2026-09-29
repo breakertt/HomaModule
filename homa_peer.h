@@ -127,6 +127,17 @@ struct homa_peer_key {
 };
 
 /**
+ * struct homa_dst_slot - One CPU's cached dst_entry for a homa_route.
+ */
+struct homa_dst_slot {
+	/** @dst: owned reference, or NULL; touched only by its own CPU. */
+	struct dst_entry *dst;
+
+	/** @cookie: used to check whether @dst is still valid. */
+	u32 cookie;
+};
+
+/**
  * struct homa_ack_bank - One CPU's share of the acks for a peer.
  */
 struct homa_ack_bank {
@@ -304,6 +315,15 @@ struct homa_route {
 	u32 dst_cookie;
 
 	/**
+	 * @dst_slots: this CPU's own copy of @dst, used for transmission so
+	 * the per-packet dst_hold doesn't bounce one shared refcount line
+	 * between cores. Each CPU's route lookup returns the kernel's
+	 * per-CPU nexthop rtable, so the slots are distinct objects. @dst
+	 * stays authoritative for validity (see homa_route_validate).
+	 */
+	struct homa_dst_slot __percpu *dst_slots;
+
+	/**
 	 * @flow: Contains parameters used to generate @dst; must be
 	 * retained and passed to ip*xmit.
 	 */
@@ -371,6 +391,8 @@ struct homa_route
 void     homa_route_delete_fn(void *object, void *dummy);
 void     homa_route_free(struct rcu_head *head);
 void     homa_route_gc(struct homa_peertab *peertab);
+struct dst_entry
+	*homa_route_get_dst(struct homa_route *route, struct homa_sock *hsk);
 struct homa_route
 	*homa_route_get(struct homa_sock *hsk,
 				    const struct in6_addr *addr);
@@ -470,10 +492,7 @@ static inline int homa_peer_compare(struct rhashtable_compare_arg *arg,
 static inline int homa_route_xmit(struct sk_buff *skb, struct homa_sock *hsk,
 				  struct homa_route *route, int priority)
 {
-	rcu_read_lock();
-	dst_hold(rcu_dereference(route->dst));
-	skb_dst_set(skb, rcu_dereference(route->dst));
-	rcu_read_unlock();
+	skb_dst_set(skb, homa_route_get_dst(route, hsk));
 	IF_NO_STRIP(priority = hsk->homa->priority_map[priority]);
 	if (ipv6_addr_v4mapped(&route->peer->addr)) {
 		IF_NO_STRIP(homa_hijack_set_hdr(skb, route, false));
