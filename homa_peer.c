@@ -251,7 +251,6 @@ struct homa_peer *homa_peer_alloc(struct homa_sock *hsk,
 	peer->ht_key.addr = *addr;
 	peer->ht_key.hnet = hsk->hnet;
 	refcount_set(&peer->refs, 1);
-	spin_lock_init(&peer->lock);
 #ifndef __STRIP__ /* See strip.py */
 	peer->unsched_cutoffs[HOMA_MAX_PRIORITIES - 1] = 0;
 	peer->unsched_cutoffs[HOMA_MAX_PRIORITIES - 2] = INT_MAX;
@@ -815,25 +814,6 @@ void homa_peer_set_cutoffs(struct homa_peer *peer, int c0, int c1, int c2,
 	peer->unsched_cutoffs[5] = c5;
 	peer->unsched_cutoffs[6] = c6;
 	peer->unsched_cutoffs[7] = c7;
-}
-
-/**
- * homa_peer_lock_slow() - This function implements the slow path for
- * acquiring a peer's @lock. It is invoked when the lock isn't
- * immediately available. It waits for the lock, but also records statistics
- * about the waiting time.
- * @peer:    Peer to  lock.
- */
-void homa_peer_lock_slow(struct homa_peer *peer)
-	__acquires(peer->lock)
-{
-	u64 start = homa_clock();
-
-	tt_record("beginning wait for peer lock");
-	spin_lock_bh(&peer->lock);
-	tt_record("ending wait for peer lock");
-	INC_METRIC(peer_ack_lock_misses, 1);
-	INC_METRIC(peer_ack_lock_miss_cycles, homa_clock() - start);
 }
 #endif /* See strip.py */
 

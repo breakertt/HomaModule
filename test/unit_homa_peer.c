@@ -46,15 +46,6 @@ FIXTURE_TEARDOWN(homa_peer)
 	unit_teardown();
 }
 
-#ifndef __STRIP__ /* See strip.py */
-static void peer_spinlock_hook(char *id)
-{
-	if (strcmp(id, "spin_lock") != 0)
-		return;
-	mock_clock += 1000;
-}
-#endif /* See strip.py */
-
 static struct _test_data_homa_peer *test_data;
 static struct homa_route *conflicting_route;
 static int route_race_hook_invocations;
@@ -914,25 +905,6 @@ TEST_F(homa_peer, homa_unsched_priority)
 	EXPECT_EQ(3, homa_unsched_priority(&self->homa, &peer, 201));
 }
 
-TEST_F(homa_peer, homa_peer_lock_slow)
-{
-	struct homa_route *route = homa_route_get(&self->hsk, ip3333);
-
-	ASSERT_NE(NULL, route);
-	mock_clock = 10000;
-	homa_peer_lock(route->peer);
-	EXPECT_EQ(0, homa_metrics_per_cpu()->peer_ack_lock_misses);
-	EXPECT_EQ(0, homa_metrics_per_cpu()->peer_ack_lock_miss_cycles);
-	homa_peer_unlock(route->peer);
-
-	mock_trylock_errors = 1;
-	unit_hook_register(peer_spinlock_hook);
-	homa_peer_lock(route->peer);
-	EXPECT_EQ(1, homa_metrics_per_cpu()->peer_ack_lock_misses);
-	EXPECT_EQ(1000, homa_metrics_per_cpu()->peer_ack_lock_miss_cycles);
-	homa_peer_unlock(route->peer);
-	homa_route_release(route);
-}
 #endif /* See strip.py */
 
 TEST_F(homa_peer, homa_peer_add_ack)

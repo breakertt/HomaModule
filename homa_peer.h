@@ -179,11 +179,6 @@ struct homa_peer {
 	struct rhash_head ht_linkage;
 
 	/**
-	 * @lock: used to synchronize access to fields in this struct.
-	 */
-	spinlock_t lock ____cacheline_aligned_in_smp;
-
-	/**
 	 * @acks: per-CPU banks of client RPCs whose results have been
 	 * completely received. Filled by homa_peer_add_ack and drained by
 	 * homa_peer_get_acks on the same CPU, so neither shares a line with
@@ -380,7 +375,6 @@ struct homa_peer
 	*homa_peer_get(struct homa_sock *hsk, const struct in6_addr *addr);
 int      homa_peer_get_acks(struct homa_peer *peer, int count,
 			    struct homa_ack *dst);
-void     homa_peer_lock_slow(struct homa_peer *peer);
 void     homa_peer_release_fn(void *object, void *dummy);
 void     homa_peer_update_sysctl_deps(struct homa_peertab *peertab);
 void     homa_peer_set_cutoffs(struct homa_peer *peer, int c0, int c1,
@@ -406,40 +400,6 @@ int      homa_route_validate(struct homa_rpc *rpc);
 
 extern const struct rhashtable_params peer_ht_params;
 extern const struct rhashtable_params route_ht_params;
-
-#ifndef __STRIP__ /* See strip.py */
-/**
- * homa_peer_lock() - Acquire the lock for a peer. If the lock isn't
- * immediately available, record stats on the waiting time.
- * @peer:    Peer to lock.
- */
-static inline void homa_peer_lock(struct homa_peer *peer)
-	__acquires(peer->lock)
-{
-	if (!spin_trylock_bh(&peer->lock))
-		homa_peer_lock_slow(peer);
-}
-#else /* See strip.py */
-/**
- * homa_peer_lock() - Acquire the lock for a peer.
- * @peer:    Peer to lock.
- */
-static inline void homa_peer_lock(struct homa_peer *peer)
-	__acquires(peer->lock)
-{
-	spin_lock_bh(&peer->lock);
-}
-#endif /* See strip.py */
-
-/**
- * homa_peer_unlock() - Release the lock for a peer.
- * @peer:   Peer to lock.
- */
-static inline void homa_peer_unlock(struct homa_peer *peer)
-	__releases(peer->lock)
-{
-	spin_unlock_bh(&peer->lock);
-}
 
 /**
  * homa_route_hold() - Increment the reference count on a route.

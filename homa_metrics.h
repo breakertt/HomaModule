@@ -650,17 +650,6 @@ struct homa_metrics {
 	u64 socket_lock_misses;
 
 	/**
-	 * @peer_ack_lock_miss_cycles: total time spent waiting for peer lock misses.
-	 */
-	u64 peer_ack_lock_miss_cycles;
-
-	/**
-	 * @peer_ack_lock_misses: total number of times that Homa had to wait
-	 * to acquire the lock used for managing acks for a peer.
-	 */
-	u64 peer_ack_lock_misses;
-
-	/**
 	 * @grant_lock_miss_cycles: total time spent waiting for grant lock
 	 * misses.
 	 */
