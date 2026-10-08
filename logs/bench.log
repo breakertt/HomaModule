@@ -1,0 +1,40 @@
+# nic node1: if=ens1f1np1 ko_md5=f01b7707cfc4 kernel=6.17.8-061708-generic fw=14.18.2030 addrs=5 fwmark_rules=4 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 ntuple=off rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,max_nic_est_backlog_usecs=5,gro_policy=114,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000
+# nic node0: if=ens1f1np1 ko_md5=f01b7707cfc4 kernel=6.17.8-061708-generic fw=14.18.2030 addrs=1 fwmark_rules=0 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 ntuple=off rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,max_nic_est_backlog_usecs=5,gro_policy=114,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000
+RUN base 1:1:1 rep=1 kops=55.6 p50=17.17 p99=34.2 window_s=8.32 needack_sent_srv=8 needack_rcvd_cli=9 needack_per_rpc=0.0000
+RUN base 1:1:1 rep=2 kops=53.7 p50=17.30 p99=34.9 window_s=8.33 needack_sent_srv=8 needack_rcvd_cli=9 needack_per_rpc=0.0000
+RUN base 3:96:2 rep=1 kops=472.4 p50=31.27 p99=50.9 window_s=8.71 needack_sent_srv=458 needack_rcvd_cli=494 needack_per_rpc=0.0001
+RUN base 3:96:2 rep=2 kops=473.8 p50=31.30 p99=48.0 window_s=8.52 needack_sent_srv=384 needack_rcvd_cli=435 needack_per_rpc=0.0001
+RUN base 3:384:2 rep=1 kops=472.5 p50=31.32 p99=54.3 window_s=8.45 needack_sent_srv=1501 needack_rcvd_cli=1657 needack_per_rpc=0.0004
+RUN base 3:384:2 rep=2 kops=472.4 p50=31.32 p99=51.6 window_s=8.55 needack_sent_srv=1307 needack_rcvd_cli=1435 needack_per_rpc=0.0003
+RUN base 3:384:2:m rep=1 kops=255.5 p50=715.91 p99=6316.2 window_s=8.47 needack_sent_srv=1482657 needack_rcvd_cli=1409624 needack_per_rpc=0.6854
+RUN base 3:384:2:m rep=2 kops=298.8 p50=319.89 p99=6171.2 window_s=8.65 needack_sent_srv=1536134 needack_rcvd_cli=1468524 needack_per_rpc=0.5942
+# nic node1: if=ens1f1np1 ko_md5=1c0541fc7fd2 kernel=6.17.8-061708-generic fw=14.18.2030 addrs=5 fwmark_rules=4 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 ntuple=off rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,max_nic_est_backlog_usecs=5,gro_policy=114,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000
+# nic node0: if=ens1f1np1 ko_md5=1c0541fc7fd2 kernel=6.17.8-061708-generic fw=14.18.2030 addrs=1 fwmark_rules=0 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 ntuple=off rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,max_nic_est_backlog_usecs=5,gro_policy=114,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000
+RUN fix 1:1:1 rep=1 kops=53.8 p50=17.31 p99=34.6 window_s=8.68 needack_sent_srv=7 needack_rcvd_cli=8 needack_per_rpc=0.0000
+RUN fix 1:1:1 rep=2 kops=53.8 p50=17.28 p99=34.8 window_s=8.33 needack_sent_srv=8 needack_rcvd_cli=8 needack_per_rpc=0.0000
+RUN fix 3:96:2 rep=1 kops=473.5 p50=31.49 p99=49.2 window_s=8.71 needack_sent_srv=462 needack_rcvd_cli=510 needack_per_rpc=0.0001
+RUN fix 3:96:2 rep=2 kops=477.6 p50=31.59 p99=50.6 window_s=8.77 needack_sent_srv=431 needack_rcvd_cli=479 needack_per_rpc=0.0001
+RUN fix 3:384:2 rep=1 kops=479.8 p50=31.56 p99=58.4 window_s=8.45 needack_sent_srv=1414 needack_rcvd_cli=1555 needack_per_rpc=0.0003
+RUN fix 3:384:2 rep=2 kops=476.8 p50=31.50 p99=55.7 window_s=8.72 needack_sent_srv=1363 needack_rcvd_cli=1349 needack_per_rpc=0.0003
+RUN fix 3:384:2:m rep=1 kops=484.8 p50=31.62 p99=61.1 window_s=8.93 needack_sent_srv=1729 needack_rcvd_cli=1832 needack_per_rpc=0.0004
+RUN fix 3:384:2:m rep=2 kops=484.8 p50=31.58 p99=57.0 window_s=8.55 needack_sent_srv=1839 needack_rcvd_cli=2022 needack_per_rpc=0.0004
+# nic node1: if=ens1f1np1 ko_md5=f01b7707cfc4 kernel=6.17.8-061708-generic fw=14.18.2030 addrs=5 fwmark_rules=4 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 ntuple=off rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,max_nic_est_backlog_usecs=5,gro_policy=114,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000
+# nic node0: if=ens1f1np1 ko_md5=f01b7707cfc4 kernel=6.17.8-061708-generic fw=14.18.2030 addrs=1 fwmark_rules=0 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 ntuple=off rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,max_nic_est_backlog_usecs=5,gro_policy=114,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000
+RUN base 1:1:1 rep=1 kops=54.5 p50=17.20 p99=34.4 window_s=8.33 needack_sent_srv=8 needack_rcvd_cli=9 needack_per_rpc=0.0000
+RUN base 1:1:1 rep=2 kops=53.8 p50=17.29 p99=34.7 window_s=8.64 needack_sent_srv=8 needack_rcvd_cli=9 needack_per_rpc=0.0000
+RUN base 3:96:2 rep=1 kops=471.6 p50=31.26 p99=51.1 window_s=8.30 needack_sent_srv=428 needack_rcvd_cli=492 needack_per_rpc=0.0001
+RUN base 3:96:2 rep=2 kops=471.9 p50=31.39 p99=50.0 window_s=8.45 needack_sent_srv=426 needack_rcvd_cli=472 needack_per_rpc=0.0001
+RUN base 3:384:2 rep=1 kops=472.4 p50=31.30 p99=50.9 window_s=8.71 needack_sent_srv=1350 needack_rcvd_cli=1556 needack_per_rpc=0.0003
+RUN base 3:384:2 rep=2 kops=471.5 p50=31.26 p99=58.2 window_s=8.51 needack_sent_srv=1105 needack_rcvd_cli=1264 needack_per_rpc=0.0003
+RUN base 3:384:2:m rep=1 kops=235.5 p50=1453.08 p99=8612.2 window_s=8.62 needack_sent_srv=1404157 needack_rcvd_cli=1269229 needack_per_rpc=0.6914
+RUN base 3:384:2:m rep=2 kops=347.9 p50=353.41 p99=5650.1 window_s=8.76 needack_sent_srv=2142110 needack_rcvd_cli=1921194 needack_per_rpc=0.7026
+# nic node1: if=ens1f1np1 ko_md5=1c0541fc7fd2 kernel=6.17.8-061708-generic fw=14.18.2030 addrs=5 fwmark_rules=4 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 ntuple=off rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,max_nic_est_backlog_usecs=5,gro_policy=114,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000
+# nic node0: if=ens1f1np1 ko_md5=1c0541fc7fd2 kernel=6.17.8-061708-generic fw=14.18.2030 addrs=1 fwmark_rules=0 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 ntuple=off rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,max_nic_est_backlog_usecs=5,gro_policy=114,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000
+RUN fix 1:1:1 rep=1 kops=54.0 p50=17.21 p99=34.6 window_s=8.33 needack_sent_srv=8 needack_rcvd_cli=9 needack_per_rpc=0.0000
+RUN fix 1:1:1 rep=2 kops=53.9 p50=17.22 p99=34.8 window_s=8.34 needack_sent_srv=8 needack_rcvd_cli=9 needack_per_rpc=0.0000
+RUN fix 3:96:2 rep=1 kops=478.3 p50=31.60 p99=56.2 window_s=9.00 needack_sent_srv=506 needack_rcvd_cli=554 needack_per_rpc=0.0001
+RUN fix 3:96:2 rep=2 kops=462.0 p50=31.39 p99=49.5 window_s=8.34 needack_sent_srv=414 needack_rcvd_cli=461 needack_per_rpc=0.0001
+RUN fix 3:384:2 rep=1 kops=473.8 p50=31.48 p99=53.6 window_s=8.33 needack_sent_srv=1473 needack_rcvd_cli=1537 needack_per_rpc=0.0004
+RUN fix 3:384:2 rep=2 kops=476.6 p50=31.53 p99=54.6 window_s=8.72 needack_sent_srv=1329 needack_rcvd_cli=1418 needack_per_rpc=0.0003
+RUN fix 3:384:2:m rep=1 kops=480.8 p50=31.56 p99=56.4 window_s=8.70 needack_sent_srv=1824 needack_rcvd_cli=1962 needack_per_rpc=0.0004
+RUN fix 3:384:2:m rep=2 kops=482.4 p50=31.60 p99=60.6 window_s=8.65 needack_sent_srv=1723 needack_rcvd_cli=1864 needack_per_rpc=0.0004

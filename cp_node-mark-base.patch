@@ -1,0 +1,41 @@
+--- a/util/cp_node.cc	2026-09-28 18:40:38.804102472 +0000
++++ b/util/cp_node.cc	2026-09-28 23:45:50.776285113 +0000
+@@ -63,6 +63,12 @@
+ bool tcp_trunc = true;
+ bool one_way = false;
+ int port_receivers = 1;
++
++/* @mark_base: if nonzero, client socket i gets SO_MARK mark_base+i, so
++ * policy routing can give each socket its own source address (and thus
++ * its own RSS queue) while all of them still talk to the same peer.
++ */
++int mark_base = 0;
+ int port_threads = 1;
+ std::string protocol_string;
+ const char *protocol = "homa";
+@@ -2020,6 +2026,14 @@
+ 		log(NORMAL, "Couldn't open Homa socket: %s\n", strerror(errno));
+ 		fatal();
+ 	}
++	if (mark_base) {
++		int mark = mark_base + id;
++
++		if (setsockopt(fd, SOL_SOCKET, SO_MARK, &mark, sizeof(mark)) < 0) {
++			log(NORMAL, "Couldn't set SO_MARK: %s\n", strerror(errno));
++			fatal();
++		}
++	}
+ 
+ 	buf_region = (char *) mmap(NULL, buf_size, PROT_READ|PROT_WRITE,
+ 			MAP_PRIVATE|MAP_ANONYMOUS, 0, 0);
+@@ -3122,6 +3136,10 @@
+ 			if (!parse(words, i+1, &client_ports, option, "integer"))
+ 				return 0;
+ 			i++;
++		} else if (strcmp(option, "--mark-base") == 0) {
++			if (!parse(words, i+1, &mark_base, option, "integer"))
++				return 0;
++			i++;
+ 		} else if (strcmp(option, "--port-receivers") == 0) {
+ 			if (!parse(words, i+1, &port_receivers, option,
+ 					"integer"))
