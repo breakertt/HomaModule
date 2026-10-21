@@ -41,6 +41,16 @@ static void nospace_hook(char *id)
 	clear_bit(HOMA_SOCK_NOSPACE, &hook_hsk->flags);
 }
 
+/* Counts the waits for reapers that happen before the buffer pool is freed. */
+static void reapers_hook(char *id)
+{
+	if (strcmp(id, "cpu_relax") != 0)
+		return;
+	if (hook_hsk->buffer_pool)
+		hook_count++;
+	atomic_dec(&hook_hsk->reapers);
+}
+
 static void init_scan(struct homa_socktab_scan *scan,
 		      struct homa_socktab *socktab)
 {
@@ -500,6 +510,20 @@ TEST_F(homa_sock, homa_sock_shutdown__delete_rpcs)
 	EXPECT_TRUE(self->hsk.shutdown);
 	EXPECT_EQ(0, unit_list_length(&self->hsk.active_rpcs));
 	unit_sock_destroy(&self->hsk);
+}
+TEST_F(homa_sock, homa_sock_destroy__wait_for_reapers)
+{
+	homa_sock_shutdown(&self->hsk);
+	atomic_set(&self->hsk.reapers, 2);
+	hook_hsk = &self->hsk;
+	hook_count = 0;
+	unit_hook_register(reapers_hook);
+
+	homa_sock_destroy(&self->hsk.sock);
+	EXPECT_EQ(2, hook_count);
+	EXPECT_EQ(0, atomic_read(&self->hsk.reapers));
+	EXPECT_EQ(1, atomic_read(&self->hsk.protect_count));
+	EXPECT_EQ(NULL, self->hsk.buffer_pool);
 }
 TEST_F(homa_sock, homa_sock_shutdown__wakeup_interests_and_wmem)
 {

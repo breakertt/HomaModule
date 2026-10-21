@@ -17,6 +17,15 @@
 #define n(x) htons(x)
 #define N(x) htonl(x)
 
+static struct homa_sock *hook_hsk;
+static int hook_reapers;
+static void reapers_hook(char *id)
+{
+	if (strcmp(id, "spin_lock") == 0 &&
+	    atomic_read(&hook_hsk->reapers) > hook_reapers)
+		hook_reapers = atomic_read(&hook_hsk->reapers);
+}
+
 FIXTURE(homa_rpc) {
 	struct in6_addr client_ip[1];
 	int client_port;
@@ -782,6 +791,22 @@ TEST_F(homa_rpc, homa_rpc_reap__protected)
 	EXPECT_EQ(0, homa_rpc_reap(&self->hsk));
 	homa_unprotect_rpcs(&self->hsk);
 	EXPECT_STREQ("", unit_log_get());
+	EXPECT_EQ(0, atomic_read(&self->hsk.reapers));
+}
+TEST_F(homa_rpc, homa_rpc_reap__count_reapers)
+{
+	struct homa_rpc *crpc = unit_client_rpc(&self->hsk, UNIT_OUTGOING,
+			self->client_ip, self->server_ip, self->server_port,
+			self->client_id, 5000, 100);
+
+	ASSERT_NE(NULL, crpc);
+	homa_rpc_end(crpc);
+	hook_hsk = &self->hsk;
+	hook_reapers = 0;
+	unit_hook_register(reapers_hook);
+	EXPECT_EQ(0, homa_rpc_reap(&self->hsk));
+	EXPECT_EQ(1, hook_reapers);
+	EXPECT_EQ(0, atomic_read(&self->hsk.reapers));
 }
 TEST_F(homa_rpc, homa_rpc_reap__stop_because_of_BATCH_MAX_RPCS)
 {
