@@ -29,6 +29,7 @@ FIXTURE(homa_offload)
 	struct homa homa;
 	struct homa_net *hnet;
 	struct homa_sock hsk;
+	struct homa_sock hsk2;
 	struct in6_addr src_ip;
 	struct in6_addr dst_ip;
 	struct homa_data_hdr header;
@@ -46,6 +47,10 @@ FIXTURE_SETUP(homa_offload)
 	self->hnet = mock_hnet(0, &self->homa);
 	self->homa.unsched_bytes = 10000;
 	mock_sock_init(&self->hsk, self->hnet, 99);
+	/* Many tests send to port 88; homa_gro_receive only aggregates
+	 * packets that have a local socket.
+	 */
+	mock_sock_init(&self->hsk2, self->hnet, 88);
 	self->src_ip = unit_get_in_addr("196.168.0.1");
 	self->dst_ip = unit_get_in_addr("1.2.3.4");
 	memset(&self->header, 0, sizeof(self->header));
@@ -242,6 +247,25 @@ TEST_F(homa_offload, homa_gro_receive__fast_grant_optimization)
 	EXPECT_EQ(1, homa_metrics_per_cpu()->gro_grant_bypasses);
 	kfree_skb(skb);
 	kfree_skb(skb3);
+}
+TEST_F(homa_offload, homa_gro_receive__no_local_socket)
+{
+	struct sk_buff *skb;
+	int flush;
+
+	self->header.common.dport = htons(77);
+	skb = mock_skb_alloc(&self->src_ip, &self->dst_ip, &self->header.common,
+			     1400, 0);
+	skb->hash = 2;
+	NAPI_GRO_CB(skb)->same_flow = 0;
+	NAPI_GRO_CB(skb)->flush = 0;
+	cur_offload_core->held_skb = NULL;
+	cur_offload_core->held_bucket = 2;
+	EXPECT_EQ(NULL, homa_gro_receive(&self->napi.gro.hash[2].list, skb));
+	flush = NAPI_GRO_CB(skb)->flush;
+	EXPECT_EQ(1, flush);
+	EXPECT_EQ(NULL, cur_offload_core->held_skb);
+	kfree_skb(skb);
 }
 TEST_F(homa_offload, homa_gro_receive__no_held_skb)
 {

@@ -190,13 +190,15 @@ struct sk_buff *homa_gro_receive(struct list_head *held_list,
 	 *    gro_list by the caller, so it will be considered for merges
 	 *    in the future.
 	 */
-	struct homa *homa = homa_net(dev_net(skb->dev))->homa;
+	struct homa_net *hnet = homa_net(dev_net(skb->dev));
 	u64 saved_softirq_metric, softirq_cycles;
 	struct homa_offload_core *offload_core;
+	struct homa *homa = hnet->homa;
 	struct sk_buff *result = NULL;
 	struct homa_data_hdr *h_new;
 	u64 *softirq_cycles_metric;
 	struct sk_buff *held_skb;
+	struct homa_sock *hsk;
 	u64 now = homa_clock();
 	int priority;
 	u32 saddr;
@@ -212,6 +214,21 @@ struct sk_buff *homa_gro_receive(struct list_head *held_list,
 	// }
 
 	h_new = (struct homa_data_hdr *)skb_transport_header(skb);
+
+	/* Only aggregate packets for a socket on this host. A packet with
+	 * no local socket is being forwarded (e.g. to a container in another
+	 * network namespace) and must go up the stack untouched: a merged
+	 * frag_list bundle can't be segmented on the forward path, and a
+	 * bypass into homa_softirq would look it up in the wrong namespace
+	 * and drop it.
+	 */
+	hsk = homa_sock_find(hnet, ntohs(h_new->common.dport));
+	if (!hsk) {
+		NAPI_GRO_CB(skb)->flush = 1;
+		return NULL;
+	}
+	sock_put(&hsk->sock);
+
 	offload_core = &per_cpu(homa_offload_core, smp_processor_id());
 	busy = (now - offload_core->last_gro) < homa->gro_busy_cycles;
 	offload_core->last_active = now;

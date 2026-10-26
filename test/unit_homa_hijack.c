@@ -43,7 +43,10 @@ FIXTURE_SETUP(homa_hijack)
 	homa_init(&self->homa);
 	self->hnet = mock_hnet(0, &self->homa);
 	self->homa.unsched_bytes = 10000;
-	mock_sock_init(&self->hsk, self->hnet, 99);
+	/* Same port as self->header: homa_gro_receive only aggregates
+	 * packets that have a local socket.
+	 */
+	mock_sock_init(&self->hsk, self->hnet, 88);
 	self->src_ip = unit_get_in_addr("196.168.0.1");
 	self->dst_ip = unit_get_in_addr("1.2.3.4");
 	memset(&self->header, 0, sizeof(self->header));
