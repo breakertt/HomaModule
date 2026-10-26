@@ -81,7 +81,7 @@ packets of each RX queue. The command lines are in [Commands](#commands), and th
 
 | item | value |
 |---|---|
-| hosts | n08 (server) and n09 (client), two nodes of a lab testbed. BlueField-3 in NIC mode, firmware 32.47.3576, 100 Gb/s, MTU 1500. 16 cores (`nosmt maxcpus=16`), kernel `6.17.8-mainline-fab`. |
+| hosts | n08 (server) and n09 (client), two nodes of a lab testbed. BlueField-3 in NIC mode, firmware 32.47.3576, 100 Gb/s, MTU 1500. Two Intel Xeon Silver 4314 CPUs (Ice Lake, 16 cores each) per host. `nosmt maxcpus=16` leaves only cores 0-15 online. These are the cores of NUMA node 0, which is also the node of the NIC. Kernel `6.17.8-mainline-fab`. |
 | driver | mlx5-flex-l4-steering `main` 42fd55c, patches 0001-0003. The NICs use the firmware settings `PROG_PARSE_GRAPH=1` and `FLEX_PARSER_PROFILE_ENABLE=4`. |
 | Homa | [PlatformLab/HomaModule](https://github.com/PlatformLab/HomaModule) `ae45ada5` with `homa-ae45ada5-ctc3.patch`. The patch changes `CORES_TO_CHECK` from 4 to 3 (`homa_offload.c:13`), so gen2 stays inside the 4 network cores. Only `S1` uses gen2, because gen2 needs RFS. |
 
