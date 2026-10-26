@@ -1,0 +1,95 @@
+Oct 26 07:39:31 node0 kernel: watchdog: BUG: soft lockup - CPU#4 stuck for 22s! [ksoftirqd/4:42]
+Oct 26 07:39:31 node0 kernel: Modules linked in: homa(OE) nfsv3 nfs_acl nfs lockd grace netfs cfg80211 sunrpc binfmt_misc nls_iso8859_1 intel_rapl_msr intel_rapl_common intel_uncore_frequency intel_uncore_frequency_common sb_edac x86_pkg_temp_thermal intel_powerclamp ipmi_ssif coretemp kvm_intel kvm irqbypass rapl mgag200 i2c_i801 intel_cstate serio_raw i2c_smbus ioatdma i2c_algo_bit i2c_mux lpc_ich dca acpi_power_meter ipmi_si acpi_ipmi ipmi_devintf acpi_tad ipmi_msghandler mac_hid sch_fq_codel dm_multipath msr efi_pstore nfnetlink dmi_sysfs ip_tables x_tables autofs4 btrfs blake2b_generic raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq raid1 raid0 linear mlx5_ib ib_uverbs macsec ib_core mlx5_core mlxfw vga16fb polyval_clmulni psmouse ghash_clmulni_intel psample vgastate ahci tls libahci pci_hyperv_intf wmi aesni_intel [last unloaded: homa(OE)]
+Oct 26 07:39:31 node0 kernel: CPU: 4 UID: 0 PID: 42 Comm: ksoftirqd/4 Tainted: G           OE       6.17.8-061708-generic #202511132139 PREEMPT(voluntary) 
+Oct 26 07:39:31 node0 kernel: Tainted: [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+Oct 26 07:39:31 node0 kernel: Hardware name: HP ProLiant XL170r Gen9/ProLiant XL170r Gen9, BIOS U14 02/17/2017
+Oct 26 07:39:31 node0 kernel: RIP: 0010:homa_pool_alloc_msg+0x300/0x4a0 [homa]
+Oct 26 07:39:31 node0 kernel: Code: 8d 90 60 fe ff ff 48 39 c8 0f 84 dd 00 00 00 8b 73 50 eb 2d 66 66 2e 0f 1f 84 00 00 00 00 00 66 66 2e 0f 1f 84 00 00 00 00 00 <48> 8b 82 a0 01 00 00 48 8d 90 60 fe ff ff 48 39 c8 0f 84 ab 00 00
+Oct 26 07:39:31 node0 kernel: RSP: 0018:ffffd0dc0023f8e0 EFLAGS: 00000246
+Oct 26 07:39:31 node0 kernel: RAX: ffff8d2575e14da0 RBX: ffff8d2580f96600 RCX: ffff8d244535ac68
+Oct 26 07:39:31 node0 kernel: RDX: ffff8d2575e14c00 RSI: 0000000000002000 RDI: 0000000000000000
+Oct 26 07:39:31 node0 kernel: RBP: ffffd0dc0023f960 R08: 0000000000000000 R09: 0000000000000000
+Oct 26 07:39:31 node0 kernel: R10: 0000000000000000 R11: 0000000000000000 R12: ffff8d337f6362c0
+Oct 26 07:39:31 node0 kernel: R13: ffff8d244535ac60 R14: 0000000000000004 R15: 0000000000002000
+Oct 26 07:39:31 node0 kernel: FS:  0000000000000000(0000) GS:ffff8d33cc272000(0000) knlGS:0000000000000000
+Oct 26 07:39:31 node0 kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+Oct 26 07:39:31 node0 kernel: CR2: 00007cf2a0f67000 CR3: 0000000108c40003 CR4: 00000000003726f0
+Oct 26 07:39:31 node0 kernel: Call Trace:
+Oct 26 07:39:31 node0 kernel:  <TASK>
+Oct 26 07:39:31 node0 kernel:  homa_message_in_init+0x6b/0x3d0 [homa]
+Oct 26 07:39:31 node0 kernel:  homa_rpc_alloc_server+0x49b/0x570 [homa]
+Oct 26 07:39:31 node0 kernel:  homa_dispatch_pkts+0x599/0xa40 [homa]
+Oct 26 07:39:31 node0 kernel:  homa_softirq+0x31b/0x6d0 [homa]
+Oct 26 07:39:31 node0 kernel:  ? homa_softirq+0x100/0x6d0 [homa]
+Oct 26 07:39:31 node0 kernel:  ? homa_softirq+0x31b/0x6d0 [homa]
+Oct 26 07:39:31 node0 kernel:  ? raw_v4_input+0x155/0x280
+Oct 26 07:39:31 node0 kernel:  ip_protocol_deliver_rcu+0x1e7/0x210
+Oct 26 07:39:31 node0 kernel:  ? ip_protocol_deliver_rcu+0x1e7/0x210
+Oct 26 07:39:31 node0 kernel:  ip_local_deliver_finish+0x86/0x110
+Oct 26 07:39:31 node0 kernel:  ip_local_deliver+0x65/0x110
+Oct 26 07:39:31 node0 kernel:  ? ip_rcv_finish_core+0xd6/0x370
+Oct 26 07:39:31 node0 kernel:  ip_rcv+0x186/0x1a0
+--
+Oct 26 07:39:31 node0 kernel: watchdog: BUG: soft lockup - CPU#1 stuck for 22s! [ksoftirqd/1:24]
+Oct 26 07:39:31 node0 kernel: Modules linked in: homa(OE) nfsv3 nfs_acl nfs lockd grace netfs cfg80211 sunrpc binfmt_misc nls_iso8859_1 intel_rapl_msr intel_rapl_common intel_uncore_frequency intel_uncore_frequency_common sb_edac x86_pkg_temp_thermal intel_powerclamp ipmi_ssif coretemp kvm_intel kvm irqbypass rapl mgag200 i2c_i801 intel_cstate serio_raw i2c_smbus ioatdma i2c_algo_bit i2c_mux lpc_ich dca acpi_power_meter ipmi_si acpi_ipmi ipmi_devintf acpi_tad ipmi_msghandler mac_hid sch_fq_codel dm_multipath msr efi_pstore nfnetlink dmi_sysfs ip_tables x_tables autofs4 btrfs blake2b_generic raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq raid1 raid0 linear mlx5_ib ib_uverbs macsec ib_core mlx5_core mlxfw vga16fb polyval_clmulni psmouse ghash_clmulni_intel psample vgastate ahci tls libahci pci_hyperv_intf wmi aesni_intel [last unloaded: homa(OE)]
+Oct 26 07:39:31 node0 kernel: CPU: 1 UID: 0 PID: 24 Comm: ksoftirqd/1 Tainted: G           OEL      6.17.8-061708-generic #202511132139 PREEMPT(voluntary) 
+Oct 26 07:39:31 node0 kernel: Tainted: [O]=OOT_MODULE, [E]=UNSIGNED_MODULE, [L]=SOFTLOCKUP
+Oct 26 07:39:31 node0 kernel: Hardware name: HP ProLiant XL170r Gen9/ProLiant XL170r Gen9, BIOS U14 02/17/2017
+Oct 26 07:39:31 node0 kernel: RIP: 0010:native_queued_spin_lock_slowpath+0x7a/0x330
+Oct 26 07:39:31 node0 kernel: Code: 0f ba 29 08 0f 92 c2 8b 01 0f b6 d2 c1 e2 08 30 e4 09 d0 3d ff 00 00 00 77 60 85 c0 74 10 0f b6 01 84 c0 74 09 f3 90 0f b6 01 <84> c0 75 f7 b8 01 00 00 00 66 89 01 31 c0 31 d2 31 c9 31 f6 31 ff
+Oct 26 07:39:31 node0 kernel: RSP: 0018:ffffd0dc001a3888 EFLAGS: 00000202
+Oct 26 07:39:31 node0 kernel: RAX: 0000000000000001 RBX: ffff8d244535ac60 RCX: ffff8d244535ac60
+Oct 26 07:39:31 node0 kernel: RDX: 0000000000000000 RSI: 0000000000000001 RDI: ffff8d244535ac60
+Oct 26 07:39:31 node0 kernel: RBP: ffffd0dc001a3890 R08: 0000000000000000 R09: 0000000000000000
+Oct 26 07:39:31 node0 kernel: R10: 0000000000000fa2 R11: 0000000000000000 R12: ffff8d337f4b62c0
+Oct 26 07:39:31 node0 kernel: R13: 00d0bb47da53bc56 R14: 0000000000000001 R15: 0000000000002000
+Oct 26 07:39:31 node0 kernel: FS:  0000000000000000(0000) GS:ffff8d33cc0f2000(0000) knlGS:0000000000000000
+Oct 26 07:39:31 node0 kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+Oct 26 07:39:31 node0 kernel: CR2: 00005ae7304020e8 CR3: 0000000105480004 CR4: 00000000003726f0
+Oct 26 07:39:31 node0 kernel: Call Trace:
+Oct 26 07:39:31 node0 kernel:  <TASK>
+Oct 26 07:39:31 node0 kernel:  ? _raw_spin_lock_bh+0x43/0x60
+Oct 26 07:39:31 node0 kernel:  homa_pool_lock_slow+0x5d/0x140 [homa]
+Oct 26 07:39:31 node0 kernel:  homa_pool_alloc_msg+0x3ef/0x4a0 [homa]
+Oct 26 07:39:31 node0 kernel:  homa_message_in_init+0x6b/0x3d0 [homa]
+Oct 26 07:39:31 node0 kernel:  homa_rpc_alloc_server+0x49b/0x570 [homa]
+Oct 26 07:39:31 node0 kernel:  homa_dispatch_pkts+0x599/0xa40 [homa]
+Oct 26 07:39:31 node0 kernel:  homa_softirq+0x31b/0x6d0 [homa]
+Oct 26 07:39:31 node0 kernel:  ? homa_softirq+0x100/0x6d0 [homa]
+Oct 26 07:39:31 node0 kernel:  ? homa_softirq+0x31b/0x6d0 [homa]
+Oct 26 07:39:31 node0 kernel:  ? raw_v4_input+0x155/0x280
+Oct 26 07:39:31 node0 kernel:  ip_protocol_deliver_rcu+0x1e7/0x210
+Oct 26 07:39:31 node0 kernel:  ? ip_protocol_deliver_rcu+0x1e7/0x210
+Oct 26 07:39:31 node0 kernel:  ip_local_deliver_finish+0x86/0x110
+--
+Oct 26 07:39:31 node0 kernel: watchdog: BUG: soft lockup - CPU#2 stuck for 22s! [ksoftirqd/2:30]
+Oct 26 07:39:31 node0 kernel: Modules linked in: homa(OE) nfsv3 nfs_acl nfs lockd grace netfs cfg80211 sunrpc binfmt_misc nls_iso8859_1 intel_rapl_msr intel_rapl_common intel_uncore_frequency intel_uncore_frequency_common sb_edac x86_pkg_temp_thermal intel_powerclamp ipmi_ssif coretemp kvm_intel kvm irqbypass rapl mgag200 i2c_i801 intel_cstate serio_raw i2c_smbus ioatdma i2c_algo_bit i2c_mux lpc_ich dca acpi_power_meter ipmi_si acpi_ipmi ipmi_devintf acpi_tad ipmi_msghandler mac_hid sch_fq_codel dm_multipath msr efi_pstore nfnetlink dmi_sysfs ip_tables x_tables autofs4 btrfs blake2b_generic raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq raid1 raid0 linear mlx5_ib ib_uverbs macsec ib_core mlx5_core mlxfw vga16fb polyval_clmulni psmouse ghash_clmulni_intel psample vgastate ahci tls libahci pci_hyperv_intf wmi aesni_intel [last unloaded: homa(OE)]
+Oct 26 07:39:31 node0 kernel: CPU: 2 UID: 0 PID: 30 Comm: ksoftirqd/2 Tainted: G           OEL      6.17.8-061708-generic #202511132139 PREEMPT(voluntary) 
+Oct 26 07:39:31 node0 kernel: Tainted: [O]=OOT_MODULE, [E]=UNSIGNED_MODULE, [L]=SOFTLOCKUP
+Oct 26 07:39:31 node0 kernel: Hardware name: HP ProLiant XL170r Gen9/ProLiant XL170r Gen9, BIOS U14 02/17/2017
+Oct 26 07:39:31 node0 kernel: RIP: 0010:native_queued_spin_lock_slowpath+0x2ce/0x330
+Oct 26 07:39:31 node0 kernel: Code: 05 48 63 f6 48 05 80 17 3c b3 48 81 fe 00 20 00 00 73 43 48 03 04 f5 00 81 07 b2 48 89 10 8b 42 08 85 c0 75 09 f3 90 8b 42 08 <85> c0 74 f7 48 8b 32 48 85 f6 0f 84 70 ff ff ff 0f 0d 0e e9 68 ff
+Oct 26 07:39:31 node0 kernel: RSP: 0018:ffffd0dc001d7858 EFLAGS: 00000246
+Oct 26 07:39:31 node0 kernel: RAX: 0000000000000000 RBX: ffff8d244535ac60 RCX: ffff8d244535ac60
+Oct 26 07:39:31 node0 kernel: RDX: ffff8d337f533780 RSI: 0000000000000000 RDI: ffff8d244535ac60
+Oct 26 07:39:31 node0 kernel: RBP: ffffd0dc001d7880 R08: 00000000000c0000 R09: ffff8d33cc172000
+Oct 26 07:39:31 node0 kernel: R10: 00000000000c0000 R11: 0000000000000000 R12: ffff8d337f5362c0
+Oct 26 07:39:31 node0 kernel: R13: 00d0bb47da96d842 R14: 0000000000000002 R15: 0000000000002000
+Oct 26 07:39:31 node0 kernel: FS:  0000000000000000(0000) GS:ffff8d33cc172000(0000) knlGS:0000000000000000
+Oct 26 07:39:31 node0 kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+Oct 26 07:39:31 node0 kernel: CR2: 00005f8be30e1000 CR3: 0000000a26a40005 CR4: 00000000003726f0
+Oct 26 07:39:31 node0 kernel: Call Trace:
+Oct 26 07:39:31 node0 kernel:  <TASK>
+Oct 26 07:39:31 node0 kernel:  _raw_spin_lock_bh+0x43/0x60
+Oct 26 07:39:31 node0 kernel:  homa_pool_lock_slow+0x5d/0x140 [homa]
+Oct 26 07:39:31 node0 kernel:  homa_pool_alloc_msg+0x3ef/0x4a0 [homa]
+Oct 26 07:39:31 node0 kernel:  homa_message_in_init+0x6b/0x3d0 [homa]
+Oct 26 07:39:31 node0 kernel:  homa_rpc_alloc_server+0x49b/0x570 [homa]
+Oct 26 07:39:31 node0 kernel:  homa_dispatch_pkts+0x599/0xa40 [homa]
+Oct 26 07:39:31 node0 kernel:  homa_softirq+0x31b/0x6d0 [homa]
+Oct 26 07:39:31 node0 kernel:  ? homa_softirq+0x100/0x6d0 [homa]
+Oct 26 07:39:31 node0 kernel:  ? homa_softirq+0x31b/0x6d0 [homa]
+Oct 26 07:39:31 node0 kernel:  ? raw_v4_input+0x155/0x280
+Oct 26 07:39:31 node0 kernel:  ip_protocol_deliver_rcu+0x1e7/0x210
+Oct 26 07:39:31 node0 kernel:  ? ip_protocol_deliver_rcu+0x1e7/0x210
+Oct 26 07:39:31 node0 kernel:  ip_local_deliver_finish+0x86/0x110

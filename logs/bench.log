@@ -1,0 +1,45 @@
+# nic node1: if=ens1f1np1 ko_md5=c42dfd69b99e kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+# nic node0: if=ens1f1np1 ko_md5=c42dfd69b99e kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+RUN base 1:1:1:100 rep=1 kops=54.8 p50=16.99 p99=34.4 warns=0
+RUN base 1:1:1:100 rep=2 kops=54.8 p50=16.99 p99=34.4 warns=0
+RUN base 3:384:2:100 rep=1 kops=484.3 p50=31.21 p99=53.4 warns=0
+RUN base 3:384:2:100 rep=2 kops=480.4 p50=31.23 p99=61.2 warns=0
+RUN base 3:96:2:8192 rep=1 kops=350.6 p50=264.71 p99=569.5 warns=0
+RUN base 3:96:2:8192 rep=2 kops=350.6 p50=262.68 p99=698.1 warns=0
+# nic node1: if=ens1f1np1 ko_md5=b6e96ff9026d kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+# nic node0: if=ens1f1np1 ko_md5=b6e96ff9026d kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+RUN fix 1:1:1:100 rep=1 kops=54.3 p50=17.08 p99=34.3 warns=0
+RUN fix 1:1:1:100 rep=2 kops=55.2 p50=17.08 p99=33.4 warns=0
+RUN fix 3:384:2:100 rep=1 kops=478.7 p50=31.17 p99=58.3 warns=0
+RUN fix 3:384:2:100 rep=2 kops=481.4 p50=31.14 p99=57.6 warns=0
+RUN fix 3:96:2:8192 rep=1 kops=350.7 p50=264.46 p99=650.1 warns=0
+RUN fix 3:96:2:8192 rep=2 kops=350.6 p50=262.90 p99=684.7 warns=0
+# nic node1: if=ens1f1np1 ko_md5=c42dfd69b99e kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+# nic node0: if=ens1f1np1 ko_md5=c42dfd69b99e kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+RUN base 1:1:1:100 rep=1 kops=53.9 p50=17.29 p99=34.5 warns=0
+RUN base 1:1:1:100 rep=2 kops=54.2 p50=17.18 p99=34.4 warns=0
+RUN base 3:384:2:100 rep=1 kops=473.5 p50=31.15 p99=48.5 warns=0
+RUN base 3:384:2:100 rep=2 kops=480.6 p50=31.24 p99=59.1 warns=0
+RUN base 3:96:2:8192 rep=1 kops=350.8 p50=264.26 p99=681.4 warns=0
+RUN base 3:96:2:8192 rep=2 kops=350.8 p50=263.25 p99=664.3 warns=0
+# nic node1: if=ens1f1np1 ko_md5=b6e96ff9026d kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+# nic node0: if=ens1f1np1 ko_md5=b6e96ff9026d kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+RUN fix 1:1:1:100 rep=1 kops=53.0 p50=17.45 p99=34.8 warns=0
+RUN fix 1:1:1:100 rep=2 kops=54.1 p50=17.31 p99=34.6 warns=0
+RUN fix 3:384:2:100 rep=1 kops=480.7 p50=31.21 p99=60.5 warns=0
+RUN fix 3:384:2:100 rep=2 kops=477.3 p50=31.09 p99=54.7 warns=0
+RUN fix 3:96:2:8192 rep=1 kops=350.8 p50=263.66 p99=707.5 warns=0
+RUN fix 3:96:2:8192 rep=2 kops=350.8 p50=263.90 p99=649.2 warns=0
+# nic node1: if=ens1f1np1 ko_md5=b6e96ff9026d kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+# nic node0: if=ens1f1np1 ko_md5=b6e96ff9026d kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+CLOSE fix rounds=10000 closes=160000 requests=2523258 alloc_failures=2263126 discards=2391568 responses=109441 node0_soft_lockups=0
+CLOSE fix rounds=10000 closes=160000 requests=2568886 alloc_failures=2310197 discards=2462010 responses=105974 node0_soft_lockups=0
+CLOSE fix rounds=10000 closes=160000 requests=2519690 alloc_failures=2272188 discards=2412370 responses=105999 node0_soft_lockups=0
+# nic node1: if=ens1f1np1 ko_md5=c42dfd69b99e kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+# nic node0: if=ens1f1np1 ko_md5=c42dfd69b99e kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+CLOSE base rounds=10000 closes=160000 requests=2661636 alloc_failures=2512104 discards=2601810 responses=63789 node0_soft_lockups=0
+ssh: connect to host node0 port 22: No route to host
+ssh: connect to host node0 port 22: No route to host
+ssh: connect to host node0 port 22: No route to host
+CLOSE base rounds=10000 closes=160000 requests=- alloc_failures=- discards=- responses=90168 node0_soft_lockups=unreachable
+node0 is not healthy after base: stop
