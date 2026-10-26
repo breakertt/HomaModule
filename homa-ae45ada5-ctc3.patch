@@ -1,0 +1,11 @@
+--- homa_offload.c	2026-10-20 21:24:32.000000000 +0000
++++ homa_offload.c	2026-10-25 23:18:50.077977000 +0000
+@@ -10,7 +10,7 @@
+ 
+ DEFINE_PER_CPU(struct homa_offload_core, homa_offload_core);
+ 
+-#define CORES_TO_CHECK 4
++#define CORES_TO_CHECK 3
+ 
+ static const struct net_offload homa_offload = {
+ 	.callbacks = {

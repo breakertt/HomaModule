@@ -1,0 +1,200 @@
+% 1792975896.984402751 Average message length 0.1 KB, rate 0.00 K/sec, expected BW 0.0 Gbps
+1792975896.989296359 Average message length 0.1 KB, rate 0.00 K/sec, expected BW 0.0 Gbps
+1792975896.994140170 Average message length 0.1 KB, rate 0.00 K/sec, expected BW 0.0 Gbps
+1792975896.999118580 Average message length 0.1 KB, rate 0.00 K/sec, expected BW 0.0 Gbps
+% 1792975897.971246045 Outstanding client RPCs for homa_100 experiment: 16
+1792975898.983850264 homa_100 clients: 898.41 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.23 P99 36.16 P99.9 44.41, avg. req. length 100.0 bytes
+1792975898.983870997 Lag due to overload for homa_100 experiment: 100.0%
+1792975898.983873399 Outstanding client RPCs for homa_100 experiment: 17
+1792975899.994195104 homa_100 clients: 899.15 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.17 P99 35.79 P99.9 43.45, avg. req. length 100.0 bytes
+1792975899.994214637 Lag due to overload for homa_100 experiment: 100.0%
+1792975899.994216705 Outstanding client RPCs for homa_100 experiment: 18
+1792975901.006926355 homa_100 clients: 898.72 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.15 P99 36.39 P99.9 45.77, avg. req. length 100.0 bytes
+1792975901.006938820 Lag due to overload for homa_100 experiment: 100.0%
+1792975901.006941308 Outstanding client RPCs for homa_100 experiment: 17
+1792975902.017028102 homa_100 clients: 897.79 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.10 P99 36.69 P99.9 45.04, avg. req. length 100.0 bytes
+1792975902.017039797 Lag due to overload for homa_100 experiment: 100.0%
+1792975902.017042120 Outstanding client RPCs for homa_100 experiment: 17
+% 1792975903.635441692 homa_100 clients: 898.78 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.32 P99 36.81 P99.9 49.57, avg. req. length 100.0 bytes
+1792975903.635449687 Lag due to overload for homa_100 experiment: 100.0%
+1792975903.635451770 Outstanding client RPCs for homa_100 experiment: 19
+% 1792975904.648001341 homa_100 clients: 900.05 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.24 P99 36.41 P99.9 47.46, avg. req. length 100.0 bytes
+1792975904.648016974 Lag due to overload for homa_100 experiment: 100.0%
+1792975904.648019232 Outstanding client RPCs for homa_100 experiment: 22
+% 1792975905.658198447 homa_100 clients: 898.85 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.20 P99 36.01 P99.9 45.01, avg. req. length 100.0 bytes
+1792975905.658216400 Lag due to overload for homa_100 experiment: 100.0%
+1792975905.658218668 Outstanding client RPCs for homa_100 experiment: 22
+% 1792975906.670732709 homa_100 clients: 900.08 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.23 P99 36.10 P99.9 44.38, avg. req. length 100.0 bytes
+1792975906.670745654 Lag due to overload for homa_100 experiment: 100.0%
+1792975906.670747781 Outstanding client RPCs for homa_100 experiment: 19
+% 1792975907.680990001 homa_100 clients: 899.55 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.22 P99 36.01 P99.9 44.61, avg. req. length 100.0 bytes
+1792975907.681005544 Lag due to overload for homa_100 experiment: 100.0%
+1792975907.681007665 Outstanding client RPCs for homa_100 experiment: 20
+% 1792975908.690957935 homa_100 clients: 900.08 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.19 P99 35.98 P99.9 43.79, avg. req. length 100.0 bytes
+1792975908.690974506 Lag due to overload for homa_100 experiment: 100.0%
+1792975908.690976791 Outstanding client RPCs for homa_100 experiment: 19
+% 1792975909.700914160 homa_100 clients: 899.75 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.20 P99 36.20 P99.9 44.66, avg. req. length 100.0 bytes
+1792975909.700933394 Lag due to overload for homa_100 experiment: 100.0%
+1792975909.700935493 Outstanding client RPCs for homa_100 experiment: 19
+% 1792975910.710935195 homa_100 clients: 899.29 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.20 P99 35.86 P99.9 44.80, avg. req. length 100.0 bytes
+1792975910.710950954 Lag due to overload for homa_100 experiment: 100.0%
+1792975910.710953359 Outstanding client RPCs for homa_100 experiment: 19
+% 1792975911.721011584 homa_100 clients: 900.86 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.19 P99 36.06 P99.9 43.56, avg. req. length 100.0 bytes
+1792975911.721035606 Lag due to overload for homa_100 experiment: 100.0%
+1792975911.721038078 Outstanding client RPCs for homa_100 experiment: 17
+% 1792975912.730985768 homa_100 clients: 900.67 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.23 P99 36.51 P99.9 46.95, avg. req. length 100.0 bytes
+1792975912.731001442 Lag due to overload for homa_100 experiment: 100.0%
+1792975912.731003766 Outstanding client RPCs for homa_100 experiment: 15
+% 1792975913.741682851 homa_100 clients: 899.69 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.22 P99 36.17 P99.9 44.78, avg. req. length 100.0 bytes
+1792975913.741701963 Lag due to overload for homa_100 experiment: 100.0%
+1792975913.741704663 Outstanding client RPCs for homa_100 experiment: 21
+% 1792975914.750283425 homa_100 clients: 900.02 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.23 P99 36.10 P99.9 43.58, avg. req. length 100.0 bytes
+1792975914.750299252 Lag due to overload for homa_100 experiment: 100.0%
+1792975914.750301468 Outstanding client RPCs for homa_100 experiment: 16
+% 1792975915.758324241 homa_100 clients: 900.15 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.15 P99 35.95 P99.9 43.28, avg. req. length 100.0 bytes
+1792975915.758339176 Lag due to overload for homa_100 experiment: 100.0%
+1792975915.758341181 Outstanding client RPCs for homa_100 experiment: 17
+% 1792975916.770928176 homa_100 clients: 899.74 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.18 P99 35.95 P99.9 43.91, avg. req. length 100.0 bytes
+1792975916.770942825 Lag due to overload for homa_100 experiment: 100.0%
+1792975916.770944986 Outstanding client RPCs for homa_100 experiment: 17
+% 1792975917.780930056 homa_100 clients: 901.13 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.21 P99 36.05 P99.9 44.14, avg. req. length 100.0 bytes
+1792975917.780944163 Lag due to overload for homa_100 experiment: 100.0%
+1792975917.780946029 Outstanding client RPCs for homa_100 experiment: 20
+% 1792975918.791033314 homa_100 clients: 900.46 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.22 P99 36.29 P99.9 44.02, avg. req. length 100.0 bytes
+1792975918.791047930 Lag due to overload for homa_100 experiment: 100.0%
+1792975918.791050000 Outstanding client RPCs for homa_100 experiment: 19
+% 1792975919.800914117 homa_100 clients: 899.96 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.20 P99 36.07 P99.9 43.59, avg. req. length 100.0 bytes
+1792975919.800928755 Lag due to overload for homa_100 experiment: 100.0%
+1792975919.800930699 Outstanding client RPCs for homa_100 experiment: 18
+% 1792975920.810943298 homa_100 clients: 900.98 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.22 P99 36.28 P99.9 44.12, avg. req. length 100.0 bytes
+1792975920.810957944 Lag due to overload for homa_100 experiment: 100.0%
+1792975920.810959871 Outstanding client RPCs for homa_100 experiment: 15
+% 1792975921.819284094 homa_100 clients: 901.11 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.21 P99 36.10 P99.9 43.50, avg. req. length 100.0 bytes
+1792975921.819296784 Lag due to overload for homa_100 experiment: 100.0%
+1792975921.819298791 Outstanding client RPCs for homa_100 experiment: 18
+% 1792975922.831886364 homa_100 clients: 898.77 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.20 P99 36.19 P99.9 44.45, avg. req. length 100.0 bytes
+1792975922.831900127 Lag due to overload for homa_100 experiment: 100.0%
+1792975922.831902026 Outstanding client RPCs for homa_100 experiment: 17
+% 1792975923.842036579 homa_100 clients: 896.35 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.20 P99 36.43 P99.9 45.85, avg. req. length 100.0 bytes
+1792975923.842051955 Lag due to overload for homa_100 experiment: 100.0%
+1792975923.842053892 Outstanding client RPCs for homa_100 experiment: 18
+% 1792975924.851939149 homa_100 clients: 896.43 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.22 P99 36.29 P99.9 44.18, avg. req. length 100.0 bytes
+1792975924.851953424 Lag due to overload for homa_100 experiment: 100.0%
+1792975924.851963935 Outstanding client RPCs for homa_100 experiment: 20
+% 1792975925.861976315 homa_100 clients: 896.09 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.26 P99 36.42 P99.9 44.39, avg. req. length 100.0 bytes
+1792975925.861996409 Lag due to overload for homa_100 experiment: 100.0%
+1792975925.861999062 Outstanding client RPCs for homa_100 experiment: 16
+% 1792975926.872149736 homa_100 clients: 896.72 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.25 P99 36.52 P99.9 50.33, avg. req. length 100.0 bytes
+1792975926.872167973 Lag due to overload for homa_100 experiment: 100.0%
+1792975926.872170289 Outstanding client RPCs for homa_100 experiment: 17
+% 1792975927.884812234 homa_100 clients: 896.63 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.21 P99 36.05 P99.9 43.86, avg. req. length 100.0 bytes
+1792975927.884827812 Lag due to overload for homa_100 experiment: 100.0%
+1792975927.884829870 Outstanding client RPCs for homa_100 experiment: 17
+% 1792975928.894843366 homa_100 clients: 899.85 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.34 P99 36.10 P99.9 43.69, avg. req. length 100.0 bytes
+1792975928.894858850 Lag due to overload for homa_100 experiment: 100.0%
+1792975928.894860950 Outstanding client RPCs for homa_100 experiment: 15
+% 1792975929.904940321 homa_100 clients: 899.98 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.22 P99 36.24 P99.9 45.28, avg. req. length 100.0 bytes
+1792975929.904955967 Lag due to overload for homa_100 experiment: 100.0%
+1792975929.904958198 Outstanding client RPCs for homa_100 experiment: 19
+% 1792975930.914910571 homa_100 clients: 899.61 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.21 P99 35.90 P99.9 43.89, avg. req. length 100.0 bytes
+1792975930.914926644 Lag due to overload for homa_100 experiment: 100.0%
+1792975930.914928881 Outstanding client RPCs for homa_100 experiment: 15
+% 1792975931.924948994 homa_100 clients: 899.98 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.20 P99 36.00 P99.9 43.40, avg. req. length 100.0 bytes
+1792975931.924967387 Lag due to overload for homa_100 experiment: 100.0%
+1792975931.924969706 Outstanding client RPCs for homa_100 experiment: 14
+% 1792975932.934898893 homa_100 clients: 900.08 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.18 P99 35.90 P99.9 43.10, avg. req. length 100.0 bytes
+1792975932.934913985 Lag due to overload for homa_100 experiment: 100.0%
+1792975932.934916013 Outstanding client RPCs for homa_100 experiment: 16
+% 1792975933.944852691 homa_100 clients: 899.61 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.22 P99 36.35 P99.9 44.54, avg. req. length 100.0 bytes
+1792975933.944867620 Lag due to overload for homa_100 experiment: 100.0%
+1792975933.944869838 Outstanding client RPCs for homa_100 experiment: 19
+% 1792975934.954903063 homa_100 clients: 900.42 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.38 P99 36.30 P99.9 45.05, avg. req. length 100.0 bytes
+1792975934.954919173 Lag due to overload for homa_100 experiment: 100.0%
+1792975934.954921373 Outstanding client RPCs for homa_100 experiment: 16
+% 1792975935.964870119 homa_100 clients: 899.93 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.22 P99 36.31 P99.9 44.08, avg. req. length 100.0 bytes
+1792975935.964884907 Lag due to overload for homa_100 experiment: 100.0%
+1792975935.964887026 Outstanding client RPCs for homa_100 experiment: 20
+% 1792975936.974892966 homa_100 clients: 900.87 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.20 P99 36.08 P99.9 45.05, avg. req. length 100.0 bytes
+1792975936.974908243 Lag due to overload for homa_100 experiment: 100.0%
+1792975936.974910285 Outstanding client RPCs for homa_100 experiment: 21
+% 1792975937.984962516 homa_100 clients: 900.85 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.22 P99 36.20 P99.9 44.29, avg. req. length 100.0 bytes
+1792975937.984976919 Lag due to overload for homa_100 experiment: 100.0%
+1792975937.984979331 Outstanding client RPCs for homa_100 experiment: 15
+% 1792975938.994968395 homa_100 clients: 901.18 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.22 P99 36.06 P99.9 43.25, avg. req. length 100.0 bytes
+1792975938.994997964 Lag due to overload for homa_100 experiment: 100.0%
+1792975938.995000584 Outstanding client RPCs for homa_100 experiment: 17
+% 1792975940.004932883 homa_100 clients: 901.07 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.22 P99 36.53 P99.9 45.79, avg. req. length 100.0 bytes
+1792975940.004952479 Lag due to overload for homa_100 experiment: 100.0%
+1792975940.004955434 Outstanding client RPCs for homa_100 experiment: 16
+% 1792975941.015016039 homa_100 clients: 901.09 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.35 P99 36.52 P99.9 45.23, avg. req. length 100.0 bytes
+1792975941.015033410 Lag due to overload for homa_100 experiment: 100.0%
+1792975941.015035544 Outstanding client RPCs for homa_100 experiment: 18
+% 1792975942.024997779 homa_100 clients: 900.55 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.21 P99 36.15 P99.9 45.08, avg. req. length 100.0 bytes
+1792975942.025013794 Lag due to overload for homa_100 experiment: 100.0%
+1792975942.025016262 Outstanding client RPCs for homa_100 experiment: 16
+% 1792975943.034997073 homa_100 clients: 899.99 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.22 P99 35.85 P99.9 43.91, avg. req. length 100.0 bytes
+1792975943.035012855 Lag due to overload for homa_100 experiment: 100.0%
+1792975943.035015070 Outstanding client RPCs for homa_100 experiment: 18
+% 1792975944.045023562 homa_100 clients: 899.96 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.20 P99 36.16 P99.9 43.95, avg. req. length 100.0 bytes
+1792975944.045039825 Lag due to overload for homa_100 experiment: 100.0%
+1792975944.045042104 Outstanding client RPCs for homa_100 experiment: 14
+% 1792975945.055631971 homa_100 clients: 900.17 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.19 P99 36.19 P99.9 45.22, avg. req. length 100.0 bytes
+1792975945.055653320 Lag due to overload for homa_100 experiment: 100.0%
+1792975945.055656192 Outstanding client RPCs for homa_100 experiment: 18
+% 1792975946.066002399 homa_100 clients: 900.63 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.28 P99 36.12 P99.9 42.96, avg. req. length 100.0 bytes
+1792975946.066018296 Lag due to overload for homa_100 experiment: 100.0%
+1792975946.066020674 Outstanding client RPCs for homa_100 experiment: 16
+% 1792975947.075908190 homa_100 clients: 900.22 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.21 P99 36.08 P99.9 44.00, avg. req. length 100.0 bytes
+1792975947.075925035 Lag due to overload for homa_100 experiment: 100.0%
+1792975947.075927105 Outstanding client RPCs for homa_100 experiment: 18
+% 1792975948.088548433 homa_100 clients: 900.76 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.48 P99 36.54 P99.9 45.07, avg. req. length 100.0 bytes
+1792975948.088568317 Lag due to overload for homa_100 experiment: 100.0%
+1792975948.088570801 Outstanding client RPCs for homa_100 experiment: 15
+% 1792975949.099011624 homa_100 clients: 900.04 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.21 P99 36.03 P99.9 43.80, avg. req. length 100.0 bytes
+1792975949.099028212 Lag due to overload for homa_100 experiment: 100.0%
+1792975949.099030478 Outstanding client RPCs for homa_100 experiment: 18
+% 1792975950.108886927 homa_100 clients: 901.16 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.18 P99 36.05 P99.9 43.67, avg. req. length 100.0 bytes
+1792975950.108901930 Lag due to overload for homa_100 experiment: 100.0%
+1792975950.108904121 Outstanding client RPCs for homa_100 experiment: 16
+% % 1792975951.637979449 homa_100 clients: 901.06 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.19 P99 35.99 P99.9 44.59, avg. req. length 100.0 bytes
+1792975951.637989158 Lag due to overload for homa_100 experiment: 100.0%
+1792975951.637991349 Outstanding client RPCs for homa_100 experiment: 19
+% 1792975952.647935023 homa_100 clients: 900.00 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.27 P99 35.82 P99.9 43.85, avg. req. length 100.0 bytes
+1792975952.647956083 Lag due to overload for homa_100 experiment: 100.0%
+1792975952.647958388 Outstanding client RPCs for homa_100 experiment: 20
+% 1792975953.657922063 homa_100 clients: 899.60 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.22 P99 36.19 P99.9 44.41, avg. req. length 100.0 bytes
+1792975953.657934553 Lag due to overload for homa_100 experiment: 100.0%
+1792975953.657936880 Outstanding client RPCs for homa_100 experiment: 15
+% 1792975954.673921095 homa_100 clients: 901.20 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.21 P99 36.10 P99.9 44.14, avg. req. length 100.0 bytes
+1792975954.673934457 Lag due to overload for homa_100 experiment: 100.0%
+1792975954.673936429 Outstanding client RPCs for homa_100 experiment: 17
+% 1792975955.683951408 homa_100 clients: 900.88 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.20 P99 36.34 P99.9 45.52, avg. req. length 100.0 bytes
+1792975955.683961164 Lag due to overload for homa_100 experiment: 100.0%
+1792975955.683963335 Outstanding client RPCs for homa_100 experiment: 17
+% 1792975956.693985097 homa_100 clients: 900.67 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.26 P99 36.19 P99.9 44.24, avg. req. length 100.0 bytes
+1792975956.693997090 Lag due to overload for homa_100 experiment: 100.0%
+1792975956.693999377 Outstanding client RPCs for homa_100 experiment: 19
+% 1792975957.703906456 homa_100 clients: 900.55 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.20 P99 35.95 P99.9 43.43, avg. req. length 100.0 bytes
+1792975957.703916360 Lag due to overload for homa_100 experiment: 100.0%
+1792975957.703918445 Outstanding client RPCs for homa_100 experiment: 20
+% 1792975958.714009614 homa_100 clients: 900.30 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.22 P99 36.14 P99.9 43.87, avg. req. length 100.0 bytes
+1792975958.714022564 Lag due to overload for homa_100 experiment: 100.0%
+1792975958.714024736 Outstanding client RPCs for homa_100 experiment: 18
+% 1792975959.723926832 homa_100 clients: 901.21 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.20 P99 36.23 P99.9 46.37, avg. req. length 100.0 bytes
+1792975959.723937121 Lag due to overload for homa_100 experiment: 100.0%
+1792975959.723939488 Outstanding client RPCs for homa_100 experiment: 18
+% 1792975960.733965593 homa_100 clients: 901.04 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.31 P99 36.69 P99.9 45.47, avg. req. length 100.0 bytes
+1792975960.733976860 Lag due to overload for homa_100 experiment: 100.0%
+1792975960.733978940 Outstanding client RPCs for homa_100 experiment: 18
+% 1792975961.743905294 homa_100 clients: 901.15 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.50 P99 36.30 P99.9 44.14, avg. req. length 100.0 bytes
+1792975961.743916831 Lag due to overload for homa_100 experiment: 100.0%
+1792975961.743918871 Outstanding client RPCs for homa_100 experiment: 18
+% 1792975962.753869433 homa_100 clients: 900.63 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.20 P99 35.97 P99.9 43.68, avg. req. length 100.0 bytes
+1792975962.753883913 Lag due to overload for homa_100 experiment: 100.0%
+1792975962.753886145 Outstanding client RPCs for homa_100 experiment: 14
+% 1792975963.760619129 homa_100 clients: 899.45 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.06 P99 36.41 P99.9 48.28, avg. req. length 100.0 bytes
+1792975963.760631454 Lag due to overload for homa_100 experiment: 100.0%
+1792975963.760633594 Outstanding client RPCs for homa_100 experiment: 18
+1792975964.771004989 homa_100 clients: 898.56 Kops/sec, 0.72 Gbps out, 0.72 Gbps in, RTT (us) P50 22.06 P99 36.36 P99.9 44.32, avg. req. length 100.0 bytes
+1792975964.771018816 Lag due to overload for homa_100 experiment: 100.0%
+1792975964.771021139 Outstanding client RPCs for homa_100 experiment: 16

@@ -1,0 +1,78 @@
+% 1792985225.084010254 Average message length 0.1 KB, rate 1.25 K/sec, expected BW 0.0 Gbps
+1792985225.088997564 Average message length 0.1 KB, rate 1.25 K/sec, expected BW 0.0 Gbps
+1792985225.093818858 Average message length 0.1 KB, rate 1.25 K/sec, expected BW 0.0 Gbps
+1792985225.098675252 Average message length 0.1 KB, rate 1.25 K/sec, expected BW 0.0 Gbps
+% 1792985227.061915774 homa_100 clients: 4.90 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.92 P99 53.32 P99.9 119.40, avg. req. length 100.0 bytes
+1792985228.063015964 homa_100 clients: 5.03 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.87 P99 52.97 P99.9 119.40, avg. req. length 100.0 bytes
+1792985229.064251595 homa_100 clients: 5.05 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.83 P99 52.87 P99.9 123.28, avg. req. length 100.0 bytes
+1792985230.065839830 homa_100 clients: 5.02 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.78 P99 53.01 P99.9 131.36, avg. req. length 100.0 bytes
+% 1792985231.066171342 homa_100 clients: 4.96 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.94 P99 52.43 P99.9 114.34, avg. req. length 100.0 bytes
+% 1792985232.066502922 homa_100 clients: 5.00 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.73 P99 52.51 P99.9 108.15, avg. req. length 100.0 bytes
+% 1792985233.066994938 homa_100 clients: 5.05 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.69 P99 51.42 P99.9 96.24, avg. req. length 100.0 bytes
+% 1792985234.067318802 homa_100 clients: 5.06 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.63 P99 52.65 P99.9 102.84, avg. req. length 100.0 bytes
+1792985234.067328090 Outstanding client RPCs for homa_100 experiment: 1
+% 1792985235.067633314 homa_100 clients: 5.06 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.62 P99 53.00 P99.9 99.28, avg. req. length 100.0 bytes
+% 1792985236.068099063 homa_100 clients: 5.10 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.74 P99 51.84 P99.9 107.98, avg. req. length 100.0 bytes
+% 1792985237.068390241 homa_100 clients: 4.98 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.70 P99 53.16 P99.9 118.23, avg. req. length 100.0 bytes
+% 1792985238.068689798 homa_100 clients: 5.01 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.66 P99 52.80 P99.9 119.97, avg. req. length 100.0 bytes
+% 1792985239.068996550 homa_100 clients: 5.13 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.60 P99 52.46 P99.9 112.34, avg. req. length 100.0 bytes
+% 1792985240.069293295 homa_100 clients: 4.96 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.67 P99 52.75 P99.9 105.03, avg. req. length 100.0 bytes
+% 1792985241.069595751 homa_100 clients: 5.02 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.67 P99 52.75 P99.9 98.88, avg. req. length 100.0 bytes
+% 1792985242.069894665 homa_100 clients: 4.96 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.62 P99 51.45 P99.9 119.46, avg. req. length 100.0 bytes
+% 1792985243.070194728 homa_100 clients: 4.95 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.68 P99 52.27 P99.9 109.44, avg. req. length 100.0 bytes
+% 1792985244.070504739 homa_100 clients: 5.12 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.57 P99 52.66 P99.9 111.34, avg. req. length 100.0 bytes
+% 1792985245.070786973 homa_100 clients: 4.89 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.62 P99 49.45 P99.9 99.55, avg. req. length 100.0 bytes
+% 1792985246.071084870 homa_100 clients: 5.06 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.67 P99 51.81 P99.9 101.56, avg. req. length 100.0 bytes
+% 1792985247.071378982 homa_100 clients: 5.02 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.58 P99 52.30 P99.9 98.86, avg. req. length 100.0 bytes
+% 1792985248.071666254 homa_100 clients: 5.06 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.62 P99 52.63 P99.9 105.88, avg. req. length 100.0 bytes
+% 1792985249.071958400 homa_100 clients: 4.93 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.62 P99 51.95 P99.9 103.77, avg. req. length 100.0 bytes
+% 1792985250.072250801 homa_100 clients: 5.02 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.58 P99 52.00 P99.9 95.81, avg. req. length 100.0 bytes
+% 1792985251.072622467 homa_100 clients: 4.93 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.65 P99 52.96 P99.9 119.37, avg. req. length 100.0 bytes
+% 1792985252.072923682 homa_100 clients: 4.96 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.62 P99 53.46 P99.9 114.31, avg. req. length 100.0 bytes
+% 1792985253.073238299 homa_100 clients: 5.02 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.60 P99 51.68 P99.9 93.31, avg. req. length 100.0 bytes
+% 1792985254.073545675 homa_100 clients: 4.91 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.61 P99 52.61 P99.9 106.63, avg. req. length 100.0 bytes
+% 1792985255.073853102 homa_100 clients: 5.15 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.56 P99 52.05 P99.9 97.88, avg. req. length 100.0 bytes
+% 1792985256.074164132 homa_100 clients: 5.04 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.61 P99 51.22 P99.9 120.89, avg. req. length 100.0 bytes
+% 1792985257.074485595 homa_100 clients: 5.17 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.58 P99 49.78 P99.9 95.27, avg. req. length 100.0 bytes
+% 1792985258.074791580 homa_100 clients: 5.06 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.65 P99 51.13 P99.9 113.15, avg. req. length 100.0 bytes
+1792985258.074803885 Outstanding client RPCs for homa_100 experiment: 1
+% 1792985259.075095759 homa_100 clients: 5.08 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.61 P99 51.90 P99.9 104.10, avg. req. length 100.0 bytes
+% 1792985260.075398356 homa_100 clients: 5.06 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.61 P99 52.12 P99.9 95.78, avg. req. length 100.0 bytes
+% 1792985261.075704013 homa_100 clients: 4.98 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.64 P99 52.24 P99.9 108.38, avg. req. length 100.0 bytes
+% 1792985262.076000867 homa_100 clients: 4.91 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.74 P99 53.97 P99.9 129.05, avg. req. length 100.0 bytes
+% 1792985263.076290030 homa_100 clients: 4.94 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.65 P99 52.79 P99.9 139.25, avg. req. length 100.0 bytes
+% 1792985264.076580095 homa_100 clients: 4.90 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.72 P99 51.40 P99.9 95.79, avg. req. length 100.0 bytes
+% 1792985265.076878492 homa_100 clients: 5.01 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.61 P99 51.00 P99.9 94.92, avg. req. length 100.0 bytes
+% 1792985266.077166923 homa_100 clients: 5.00 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.74 P99 51.18 P99.9 92.65, avg. req. length 100.0 bytes
+1792985266.077174300 Outstanding client RPCs for homa_100 experiment: 1
+% 1792985267.077457552 homa_100 clients: 4.95 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.75 P99 50.19 P99.9 93.81, avg. req. length 100.0 bytes
+1792985267.077463967 Outstanding client RPCs for homa_100 experiment: 1
+% 1792985268.077746024 homa_100 clients: 5.02 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.80 P99 49.88 P99.9 94.19, avg. req. length 100.0 bytes
+% 1792985269.078036640 homa_100 clients: 5.12 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.76 P99 51.84 P99.9 95.74, avg. req. length 100.0 bytes
+% 1792985270.078316171 homa_100 clients: 4.91 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.78 P99 51.24 P99.9 92.60, avg. req. length 100.0 bytes
+% 1792985271.078600667 homa_100 clients: 5.01 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.82 P99 52.10 P99.9 95.53, avg. req. length 100.0 bytes
+% 1792985272.078884349 homa_100 clients: 5.05 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.68 P99 49.23 P99.9 81.25, avg. req. length 100.0 bytes
+% 1792985273.079316934 homa_100 clients: 4.97 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.67 P99 50.20 P99.9 98.43, avg. req. length 100.0 bytes
+% 1792985274.079601607 homa_100 clients: 4.98 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.66 P99 51.46 P99.9 90.31, avg. req. length 100.0 bytes
+% 1792985275.079887880 homa_100 clients: 5.07 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.70 P99 49.62 P99.9 94.67, avg. req. length 100.0 bytes
+1792985275.079899848 Outstanding client RPCs for homa_100 experiment: 1
+% 1792985276.080170559 homa_100 clients: 4.97 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.65 P99 50.32 P99.9 119.70, avg. req. length 100.0 bytes
+% 1792985277.080449600 homa_100 clients: 5.02 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.68 P99 51.56 P99.9 94.95, avg. req. length 100.0 bytes
+1792985277.080455666 Outstanding client RPCs for homa_100 experiment: 1
+% 1792985278.080734488 homa_100 clients: 5.17 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.65 P99 52.44 P99.9 102.41, avg. req. length 100.0 bytes
+% 1792985279.080999151 homa_100 clients: 4.91 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.82 P99 52.46 P99.9 95.97, avg. req. length 100.0 bytes
+1792985279.081004825 Outstanding client RPCs for homa_100 experiment: 1
+% 1792985280.081277709 homa_100 clients: 4.90 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.77 P99 51.98 P99.9 120.75, avg. req. length 100.0 bytes
+% 1792985281.081549825 homa_100 clients: 4.93 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.71 P99 52.39 P99.9 102.10, avg. req. length 100.0 bytes
+1792985281.081556919 Outstanding client RPCs for homa_100 experiment: 1
+% 1792985282.081824578 homa_100 clients: 5.07 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.71 P99 53.45 P99.9 97.19, avg. req. length 100.0 bytes
+% 1792985283.082100688 homa_100 clients: 4.96 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.81 P99 52.88 P99.9 118.83, avg. req. length 100.0 bytes
+% 1792985284.082371752 homa_100 clients: 5.04 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.80 P99 52.51 P99.9 100.33, avg. req. length 100.0 bytes
+% 1792985285.082644431 homa_100 clients: 4.96 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.68 P99 52.46 P99.9 106.74, avg. req. length 100.0 bytes
+1792985285.082650393 Outstanding client RPCs for homa_100 experiment: 1
+% 1792985286.082918835 homa_100 clients: 4.98 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.71 P99 51.90 P99.9 95.18, avg. req. length 100.0 bytes
+% 1792985287.083188669 homa_100 clients: 4.94 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.71 P99 51.13 P99.9 94.25, avg. req. length 100.0 bytes
+% 1792985288.083472100 homa_100 clients: 5.18 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.72 P99 51.06 P99.9 95.62, avg. req. length 100.0 bytes
+% 1792985289.083741722 homa_100 clients: 5.04 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.70 P99 53.03 P99.9 110.41, avg. req. length 100.0 bytes
+% 1792985290.084014085 homa_100 clients: 5.02 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.73 P99 51.12 P99.9 119.15, avg. req. length 100.0 bytes
+% 1792985291.084301066 homa_100 clients: 5.06 Kops/sec, 0.00 Gbps out, 0.00 Gbps in, RTT (us) P50 25.56 P99 65.94 P99.9 183.77, avg. req. length 100.0 bytes
