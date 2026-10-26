@@ -246,6 +246,25 @@ TEST_F(homa_rpc, homa_rpc_alloc_server__cant_allocate_buffers)
 				     &self->data.common);
 	ASSERT_TRUE(IS_ERR(srpc));
 	EXPECT_EQ(ENOMEM, -PTR_ERR(srpc));
+	EXPECT_EQ(0, unit_list_length(&self->hsk.active_rpcs));
+	EXPECT_EQ(1, unit_list_length(&self->hsk.dead_rpcs));
+}
+TEST_F(homa_rpc, homa_rpc_alloc_server__check_shutdown_before_buffers)
+{
+	struct homa_rpc *srpc;
+
+	/* A pool without a region makes buffer allocation fail, so the
+	 * error tells which check came first.
+	 */
+	self->data.msg_length = N(1400);
+	homa_pool_free(self->hsk.buffer_pool);
+	self->hsk.buffer_pool = homa_pool_alloc(&self->hsk);
+	self->hsk.shutdown = 1;
+	srpc = homa_rpc_alloc_server(&self->hsk, self->client_ip,
+				     &self->data.common);
+	EXPECT_TRUE(IS_ERR(srpc));
+	EXPECT_EQ(ESHUTDOWN, -PTR_ERR(srpc));
+	self->hsk.shutdown = 0;
 }
 TEST_F(homa_rpc, homa_rpc_alloc_server__socket_shutdown)
 {

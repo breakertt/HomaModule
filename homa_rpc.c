@@ -179,6 +179,22 @@ struct homa_rpc *homa_rpc_alloc_server(struct homa_sock *hsk,
 	srpc->resend_timer_ticks = hsk->homa->timer_ticks;
 	srpc->magic = HOMA_RPC_MAGIC;
 	srpc->start_time = homa_clock();
+
+	/* Link the RPC into the socket before allocating buffer space.
+	 * Once the RPC is on active_rpcs, homa_sock_shutdown must lock it
+	 * (we hold its bucket lock) before homa_sock_destroy can free the
+	 * buffer pool, so the pool stays valid in homa_message_in_init.
+	 */
+	homa_sock_lock(hsk);
+	if (hsk->shutdown) {
+		homa_sock_unlock(hsk);
+		err = -ESHUTDOWN;
+		goto error;
+	}
+	hlist_add_head(&srpc->hash_links, &bucket->rpcs);
+	list_add_tail_rcu(&srpc->active_links, &hsk->active_rpcs);
+	homa_sock_unlock(hsk);
+
 #ifndef __STRIP__ /* See strip.py */
 	if (h->type == DATA) {
 		msg_length = ntohl(((struct homa_data_hdr *)h)->msg_length);
@@ -191,19 +207,12 @@ struct homa_rpc *homa_rpc_alloc_server(struct homa_sock *hsk,
 	msg_length = ntohl(((struct homa_data_hdr *)h)->msg_length);
 	err = homa_message_in_init(srpc, msg_length);
 #endif /* See strip.py */
-	if (err != 0)
-		goto error;
-
-	/* Initialize fields that require socket to be locked. */
-	homa_sock_lock(hsk);
-	if (hsk->shutdown) {
-		homa_sock_unlock(hsk);
-		err = -ESHUTDOWN;
-		goto error;
+	if (err != 0) {
+		/* The RPC is visible now, so it must go through the reaper. */
+		homa_rpc_end(srpc);
+		homa_bucket_unlock(bucket, id);
+		return ERR_PTR(err);
 	}
-	hlist_add_head(&srpc->hash_links, &bucket->rpcs);
-	list_add_tail_rcu(&srpc->active_links, &hsk->active_rpcs);
-	homa_sock_unlock(hsk);
 	if (h->type == DATA && srpc->msgin.num_bpages > 0) {
 		set_bit(RPC_PKTS_READY, &srpc->flags);
 		homa_rpc_handoff(srpc);
