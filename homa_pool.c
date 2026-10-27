@@ -307,6 +307,11 @@ int homa_pool_get_pages(struct homa_pool *pool, int num_pages, u32 *pages,
  * occurred, such as no buffer pool present, then a negative errno is
  * returned.
  */
+int homa_bad_style(int x){
+	if(x) return 1;
+	return 0;
+}
+
 int homa_pool_alloc_msg(struct homa_rpc *rpc)
 	__must_hold(rpc->bucket->lock)
 {
