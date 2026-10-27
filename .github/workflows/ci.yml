@@ -10,9 +10,11 @@ jobs:
       LINUX_VERSION: 6.17.8
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0  # the strip check needs a pull request's base
 
       - name: Install kernel build dependencies
-        run: sudo apt-get update && sudo apt-get install -y flex bison bc libelf-dev libssl-dev
+        run: sudo apt-get update && sudo apt-get install -y flex bison bc libelf-dev libssl-dev codespell
 
       # The unit tests compile against kernel headers, which need a
       # configured tree; modules_prepare is enough, no vmlinux.
@@ -42,3 +44,38 @@ jobs:
       - name: Unit tests (IPv4)
         if: ${{ !cancelled() }}
         run: cd test && ./unit --ipv4
+
+      # checkpatch the change of a pull request, as netdev's patch checks
+      # (NIPA) would: the files that go to net-next after util/strip.py,
+      # the other module sources as they are; util/ and test/ are left out.
+      - name: checkpatch
+        if: ${{ !cancelled() }}
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          # Copy what checkpatch should see from tree $1 to $2: the files that
+          # make net-next copies, stripped, and the other module sources as they are.
+          check_tree() {
+            mkdir -p $2/net $2/include/uapi/linux $2/other
+            make -s -C $1 net-next LINUX_SRC_DIR=$2 HOMA_TARGET=$2/net/homa
+            for f in $(make -s -C $1 print-CHECK_SRCS | cut -d= -f2); do
+              [ $f = homa.h ] || [ -e $2/net/homa/$f ] || cp $1/$f $2/other/
+            done
+          }
+          check_tree . $RUNNER_TEMP/check/head
+          [ "$EVENT" = pull_request ] || exit 0
+          git worktree add -q $RUNNER_TEMP/base $BASE_SHA
+          check_tree $RUNNER_TEMP/base $RUNNER_TEMP/check/base
+          cd $RUNNER_TEMP/check
+          diff -ruN base head > change.diff || true
+          [ -s change.diff ] || exit 0
+          # The options and ignored types of netdev's patch checks (NIPA).
+          $KDIR/scripts/checkpatch.pl --no-tree --no-signoff --color=never \
+            --strict --codespell --max-line-length=80 \
+            --ignore=COMMIT_MESSAGE,COMMIT_LOG_LONG_LINE,MACRO_ARG_REUSE,ALLOC_SIZEOF_STRUCT,NO_AUTHOR_SIGN_OFF,GIT_COMMIT_ID,CAMELCASE,FILE_PATH_CHANGES,BAD_REPORTED_BY_LINK \
+            change.diff > checkpatch.out || true
+          cat checkpatch.out
+          # As in NIPA, only errors fail; warnings and checks become annotations.
+          grep -E '^(WARNING|CHECK):' checkpatch.out | sed 's/^/::warning::/' || true
+          ! grep -q '^ERROR:' checkpatch.out
