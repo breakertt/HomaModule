@@ -1036,6 +1036,8 @@ void homa_qdisc_free_homa(struct homa_qdisc_dev *qdev)
  *         ensure that there will be no concurrent access to this; normally
  *         the RPC is dead when this function is called.
  */
+
+
 void homa_qdisc_flush_rpc(struct homa_rpc *rpc)
 	__must_hold(rpc->bucket->lock)
 {
