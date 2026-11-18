@@ -1,0 +1,110 @@
+[ 1327.497808] homa_sock_destroy: port 32768 sk_wmem_alloc 8217
+[ 1327.532274] homa_sock_destroy: port 32790 sk_wmem_alloc 16433
+[ 1327.532307] ------------[ cut here ]------------
+[ 1327.532309] WARNING: CPU: 9 PID: 8736 at homa_sock.c:443 homa_sock_destroy.part.0+0x163/0x170 [homa]
+[ 1327.532327] Modules linked in: homa(OE) nfsv3 nfs_acl nfs lockd grace netfs cfg80211 sunrpc binfmt_misc nls_iso8859_1 intel_rapl_msr intel_rapl_common intel_uncore_frequency intel_uncore_frequency_common sb_edac x86_pkg_temp_thermal intel_powerclamp ipmi_ssif coretemp kvm_intel kvm irqbypass rapl i2c_i801 mgag200 ioatdma i2c_smbus intel_cstate serio_raw i2c_mux i2c_algo_bit lpc_ich acpi_power_meter dca ipmi_si acpi_ipmi ipmi_devintf acpi_tad ipmi_msghandler mac_hid sch_fq_codel dm_multipath msr efi_pstore nfnetlink dmi_sysfs ip_tables x_tables autofs4 btrfs blake2b_generic raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq raid1 raid0 linear mlx5_ib ib_uverbs macsec ib_core mlx5_core polyval_clmulni vga16fb mlxfw psmouse ghash_clmulni_intel vgastate ahci psample tls libahci pci_hyperv_intf wmi aesni_intel [last unloaded: homa(OE)]
+[ 1327.532393] CPU: 9 UID: 0 PID: 8736 Comm: close_race Tainted: G        W  OE       6.17.8-061708-generic #202511132139 PREEMPT(voluntary) 
+[ 1327.532398] Tainted: [W]=WARN, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[ 1327.532399] Hardware name: HP ProLiant XL170r Gen9/ProLiant XL170r Gen9, BIOS U14 02/17/2017
+[ 1327.532401] RIP: 0010:homa_sock_destroy.part.0+0x163/0x170 [homa]
+[ 1327.532409] Code: 70 28 fc c0 48 c1 e6 20 45 31 c0 48 8b 3c cd e0 08 2f c1 6a 00 48 09 c6 31 c9 e8 08 32 00 00 e8 93 31 00 00 5a e9 1f ff ff ff <0f> 0b e9 42 ff ff ff 66 0f 1f 44 00 00 90 90 90 90 90 90 90 90 90
+[ 1327.532412] RSP: 0018:ffffcefec3e13a48 EFLAGS: 00010206
+[ 1327.532414] RAX: 0000000000004031 RBX: ffff8d06e8e50000 RCX: 0000000000000000
+[ 1327.532416] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+[ 1327.532417] RBP: ffffcefec3e13a60 R08: 0000000000000000 R09: 0000000000000000
+[ 1327.532419] R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000001
+[ 1327.532420] R13: ffff8d06e8e50460 R14: ffff8d06403cc920 R15: ffff8d064ec90780
+[ 1327.532422] FS:  000074293edff6c0(0000) GS:ffff8d15d54f2000(0000) knlGS:0000000000000000
+[ 1327.532424] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[ 1327.532425] CR2: 000074290fd4f000 CR3: 00000001a8ce9004 CR4: 00000000003726f0
+[ 1327.532427] Call Trace:
+[ 1327.532429]  <TASK>
+[ 1327.532432]  homa_sock_destroy+0x18/0x30 [homa]
+[ 1327.532440]  sk_common_release+0x1e/0x130
+[ 1327.532446]  homa_close+0x24/0x80 [homa]
+[ 1327.532456]  inet_release+0x41/0x90
+[ 1327.532461]  __sock_release+0x49/0xc0
+[ 1327.532464]  sock_close+0x18/0x30
+[ 1327.532467]  __fput+0xea/0x2d0
+[ 1327.532472]  fput_close_sync+0x40/0xc0
+[ 1327.532475]  __x64_sys_close+0x3e/0x90
+[ 1327.532479]  x64_sys_call+0x1742/0x2330
+[ 1327.532485]  do_syscall_64+0x81/0xbd0
+[ 1327.532489]  ? save_fpregs_to_fpstate+0x22/0x60
+[ 1327.532494]  ? finish_task_switch.isra.0+0x9c/0x310
+[ 1327.532498]  ? __schedule+0x2f5/0x7c0
+[ 1327.532503]  ? schedule+0x3d/0x90
+[ 1327.532505]  ? futex_unqueue+0x64/0x90
+[ 1327.532508]  ? __futex_wait+0xa8/0x110
+[ 1327.532512]  ? __pfx_futex_wake_mark+0x10/0x10
+[ 1327.532515]  ? futex_wait+0x7b/0x140
+[ 1327.532518]  ? rseq_get_rseq_cs.isra.0+0x16/0x240
+[ 1327.532523]  ? rseq_ip_fixup+0x90/0x160
+[ 1327.532525]  ? restore_fpregs_from_fpstate+0x46/0xe0
+[ 1327.532528]  ? switch_fpu_return+0x5c/0xf0
+[ 1327.532530]  ? arch_exit_to_user_mode_prepare.isra.0+0xc2/0xe0
+[ 1327.532534]  ? do_syscall_64+0xb9/0xbd0
+[ 1327.532536]  ? arch_exit_to_user_mode_prepare.isra.0+0xd/0x100
+[ 1327.532541]  ? irqentry_exit_to_user_mode+0x2d/0x1d0
+[ 1327.532545]  ? irqentry_exit+0x43/0x50
+[ 1327.532548]  ? common_interrupt+0x61/0xe0
+[ 1327.532551]  ? sysvec_apic_timer_interrupt+0x54/0xd0
+[ 1327.532554]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+[ 1327.532557] RIP: 0033:0x7429419169ec
+[ 1327.532559] Code: 0f 05 48 3d 00 f0 ff ff 77 3c c3 0f 1f 00 55 48 89 e5 48 83 ec 10 89 7d fc e8 50 1c f8 ff 8b 7d fc 89 c2 b8 03 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 2c 89 d7 89 45 fc e8 b2 1c f8 ff 8b 45 fc c9
+[ 1327.532561] RSP: 002b:000074293edfed70 EFLAGS: 00000293 ORIG_RAX: 0000000000000003
+[ 1327.532563] RAX: ffffffffffffffda RBX: 000074293edfede0 RCX: 00007429419169ec
+[ 1327.532565] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000009
+[ 1327.532566] RBP: 000074293edfed80 R08: 00006297328b0060 R09: 0000000000000023
+[ 1327.532567] R10: 0000000000000000 R11: 0000000000000293 R12: 0000742920000b70
+[ 1327.532569] R13: 000074293edfee20 R14: 000074293edfee30 R15: 0000000000000000
+[ 1327.532571]  </TASK>
+[ 1327.532572] ---[ end trace 0000000000000000 ]---
+[ 1327.532807] homa_sock_destroy: port 32784 sk_wmem_alloc 41081
+[ 1327.532833] BUG: kernel NULL pointer dereference, address: 0000000000000050
+[ 1327.533310] #PF: supervisor read access in kernel mode
+[ 1327.533575] #PF: error_code(0x0000) - not-present page
+[ 1327.533838] PGD 0 P4D 0 
+[ 1327.533983] Oops: Oops: 0000 [#1] SMP NOPTI
+[ 1327.534184] CPU: 15 UID: 0 PID: 8472 Comm: homa_timer Tainted: G        W  OE       6.17.8-061708-generic #202511132139 PREEMPT(voluntary) 
+[ 1327.534776] Tainted: [W]=WARN, [O]=OOT_MODULE, [E]=UNSIGNED_MODULE
+[ 1327.535478] Hardware name: HP ProLiant XL170r Gen9/ProLiant XL170r Gen9, BIOS U14 02/17/2017
+[ 1327.536347] RIP: 0010:homa_pool_free_bufs+0x16/0x190 [homa]
+[ 1327.536990] Code: cc 0f 1f 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 0f 1f 44 00 00 55 48 89 e5 41 57 41 56 41 55 41 54 53 48 83 ec 10 <48> 8b 47 50 48 85 c0 0f 84 5b 01 00 00 49 89 fd 41 89 f7 85 f6 0f
+[ 1327.538336] RSP: 0018:ffffcefec8977d10 EFLAGS: 00010282
+[ 1327.538635] RAX: ffff8d06e8df0000 RBX: 0000000000000004 RCX: 0000000000000000
+[ 1327.539379] RDX: ffff8d0778c00090 RSI: 0000000000000001 RDI: 0000000000000000
+[ 1327.540136] RBP: ffffcefec8977d48 R08: 0000000000000000 R09: 0000000000000000
+[ 1327.540930] R10: 0000000000000000 R11: 0000000000000000 R12: ffff8d0778c00078
+[ 1327.541706] R13: ffff8d157fbb62c0 R14: ffff8d0778c00000 R15: ffff8d06e8df0000
+[ 1327.542475] FS:  0000000000000000(0000) GS:ffff8d15d57f2000(0000) knlGS:0000000000000000
+[ 1327.542896] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[ 1327.543583] CR2: 0000000000000050 CR3: 0000000f16440005 CR4: 00000000003726f0
+[ 1327.544336] Call Trace:
+[ 1327.544487]  <TASK>
+[ 1327.545003]  homa_rpc_reap+0x633/0xa30 [homa]
+[ 1327.545831]  homa_timer+0x1f3/0x570 [homa]
+[ 1327.546069]  ? __pfx_homa_timer_main+0x10/0x10 [homa]
+[ 1327.546397]  homa_timer_main+0x50/0xd0 [homa]
+[ 1327.547158]  kthread+0x108/0x220
+[ 1327.547732]  ? __pfx_kthread+0x10/0x10
+[ 1327.547953]  ret_from_fork+0x131/0x150
+[ 1327.548165]  ? __pfx_kthread+0x10/0x10
+[ 1327.548398]  ret_from_fork_asm+0x1a/0x30
+[ 1327.548611]  </TASK>
+[ 1327.548741] Modules linked in: homa(OE) nfsv3 nfs_acl nfs lockd grace netfs cfg80211 sunrpc binfmt_misc nls_iso8859_1 intel_rapl_msr intel_rapl_common intel_uncore_frequency intel_uncore_frequency_common sb_edac x86_pkg_temp_thermal intel_powerclamp ipmi_ssif coretemp kvm_intel kvm irqbypass rapl i2c_i801 mgag200 ioatdma i2c_smbus intel_cstate serio_raw i2c_mux i2c_algo_bit lpc_ich acpi_power_meter dca ipmi_si acpi_ipmi ipmi_devintf acpi_tad ipmi_msghandler mac_hid sch_fq_codel dm_multipath msr efi_pstore nfnetlink dmi_sysfs ip_tables x_tables autofs4 btrfs blake2b_generic raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq raid1 raid0 linear mlx5_ib ib_uverbs macsec ib_core mlx5_core polyval_clmulni vga16fb mlxfw psmouse ghash_clmulni_intel vgastate ahci psample tls libahci pci_hyperv_intf wmi aesni_intel [last unloaded: homa(OE)]
+[ 1327.553330] CR2: 0000000000000050
+[ 1327.553930] ---[ end trace 0000000000000000 ]---
+[ 1327.566736] pstore: backend (erst) writing error (-28)
+[ 1327.601336] RIP: 0010:homa_pool_free_bufs+0x16/0x190 [homa]
+[ 1327.638140] Code: cc 0f 1f 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 0f 1f 44 00 00 55 48 89 e5 41 57 41 56 41 55 41 54 53 48 83 ec 10 <48> 8b 47 50 48 85 c0 0f 84 5b 01 00 00 49 89 fd 41 89 f7 85 f6 0f
+[ 1327.744240] RSP: 0018:ffffcefec8977d10 EFLAGS: 00010282
+[ 1327.779241] RAX: ffff8d06e8df0000 RBX: 0000000000000004 RCX: 0000000000000000
+[ 1327.824544] RDX: ffff8d0778c00090 RSI: 0000000000000001 RDI: 0000000000000000
+[ 1327.869377] RBP: ffffcefec8977d48 R08: 0000000000000000 R09: 0000000000000000
+[ 1327.914515] R10: 0000000000000000 R11: 0000000000000000 R12: ffff8d0778c00078
+[ 1327.959641] R13: ffff8d157fbb62c0 R14: ffff8d0778c00000 R15: ffff8d06e8df0000
+[ 1328.004519] FS:  0000000000000000(0000) GS:ffff8d15d57f2000(0000) knlGS:0000000000000000
+[ 1328.054426] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[ 1328.055153] CR2: 0000000000000050 CR3: 0000000f16440005 CR4: 00000000003726f0
+[ 1328.055975] note: homa_timer[8472] exited with irqs disabled
