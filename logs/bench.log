@@ -1,0 +1,45 @@
+# nic node1: if=ens1f1np1 ko_md5=193724f5484c kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+# nic node0: if=ens1f1np1 ko_md5=193724f5484c kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+RUN base 1:1:1:100 rep=1 kops=55.6 p50=16.82 p99=33.9 warns=0
+RUN base 1:1:1:100 rep=2 kops=55.0 p50=16.87 p99=34.2 warns=0
+RUN base 3:384:2:100 rep=1 kops=478.6 p50=30.69 p99=57.6 warns=0
+RUN base 3:384:2:100 rep=2 kops=483.9 p50=30.71 p99=53.9 warns=0
+RUN base 3:96:2:8192 rep=1 kops=350.9 p50=213.47 p99=774.1 warns=0
+RUN base 3:96:2:8192 rep=2 kops=350.9 p50=208.71 p99=791.0 warns=0
+# nic node1: if=ens1f1np1 ko_md5=c61c7182f2db kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+# nic node0: if=ens1f1np1 ko_md5=c61c7182f2db kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+RUN v2 1:1:1:100 rep=1 kops=55.4 p50=16.88 p99=33.7 warns=0
+RUN v2 1:1:1:100 rep=2 kops=56.6 p50=16.80 p99=32.7 warns=0
+RUN v2 3:384:2:100 rep=1 kops=484.0 p50=30.84 p99=60.9 warns=0
+RUN v2 3:384:2:100 rep=2 kops=480.3 p50=30.73 p99=48.7 warns=0
+RUN v2 3:96:2:8192 rep=1 kops=350.9 p50=199.12 p99=795.7 warns=0
+RUN v2 3:96:2:8192 rep=2 kops=350.8 p50=218.18 p99=775.3 warns=0
+# nic node1: if=ens1f1np1 ko_md5=193724f5484c kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+# nic node0: if=ens1f1np1 ko_md5=193724f5484c kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+RUN base 1:1:1:100 rep=1 kops=54.7 p50=16.97 p99=34.2 warns=0
+RUN base 1:1:1:100 rep=2 kops=56.0 p50=16.90 p99=33.5 warns=0
+RUN base 3:384:2:100 rep=1 kops=482.5 p50=30.80 p99=57.3 warns=0
+RUN base 3:384:2:100 rep=2 kops=481.8 p50=30.76 p99=53.3 warns=0
+RUN base 3:96:2:8192 rep=1 kops=350.8 p50=211.22 p99=766.6 warns=0
+RUN base 3:96:2:8192 rep=2 kops=350.9 p50=210.89 p99=794.2 warns=0
+# nic node1: if=ens1f1np1 ko_md5=c61c7182f2db kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+# nic node0: if=ens1f1np1 ko_md5=c61c7182f2db kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+RUN v2 1:1:1:100 rep=1 kops=55.5 p50=16.89 p99=34.0 warns=0
+RUN v2 1:1:1:100 rep=2 kops=56.7 p50=16.89 p99=32.8 warns=0
+RUN v2 3:384:2:100 rep=1 kops=480.0 p50=30.77 p99=55.9 warns=0
+RUN v2 3:384:2:100 rep=2 kops=481.6 p50=30.75 p99=60.2 warns=0
+RUN v2 3:96:2:8192 rep=1 kops=350.8 p50=220.86 p99=776.2 warns=0
+RUN v2 3:96:2:8192 rep=2 kops=350.9 p50=216.27 p99=772.2 warns=0
+# nic node1: if=ens1f1np1 ko_md5=dce53a1e68c4 kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+# nic node0: if=ens1f1np1 ko_md5=193724f5484c kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+CLOSE v2-count limit=0 rounds=3000 closes=48000 events=0 warns=0 leaked=0 responses=121959 node0_soft_lockups=0
+CLOSE v2-count limit=0 rounds=3000 closes=48000 events=0 warns=0 leaked=0 responses=107806 node0_soft_lockups=0
+CLOSE v2-count limit=0 rounds=3000 closes=48000 events=0 warns=0 leaked=0 responses=112609 node0_soft_lockups=0
+# nic node1: if=ens1f1np1 ko_md5=b97d21cde9b5 kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+# nic node0: if=ens1f1np1 ko_md5=193724f5484c kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+CLOSE base-count limit=100 rounds=3000 closes=48000 events=1 warns=1 leaked=0 responses=125061 node0_soft_lockups=0
+CLOSE base-count limit=100 rounds=3000 closes=48000 events=2 warns=1 leaked=0 responses=98587 node0_soft_lockups=0
+# nic node1: if=ens1f1np1 ko_md5=b97d21cde9b5 kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+# nic node0: if=ens1f1np1 ko_md5=193724f5484c kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 rss=0, xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 rfs=32768 no_turbo=0 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,dead_frags_limit=100
+CLOSE base-count limit=0 rounds=1000 closes=16000 events=3 warns=1 leaked=1 responses=140484 node0_soft_lockups=0
+ALL-DONE

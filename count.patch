@@ -1,0 +1,14 @@
+Print a line for every socket that homa_sock_destroy finds with
+sk_wmem_alloc != 1. The WARN_ON_ONCE prints only the first one per module
+load, so this counts all of them. Applies to both base and v2.
+
+--- a/homa_sock.c
++++ b/homa_sock.c
+@@ -433,3 +433,7 @@
++	if (refcount_read(&hsk->sock.sk_wmem_alloc) != 1)
++		pr_warn("homa_sock_destroy: port %d sk_wmem_alloc %d\n",
++			hsk->port,
++			refcount_read(&hsk->sock.sk_wmem_alloc));
+ 	WARN_ON_ONCE(refcount_read(&hsk->sock.sk_wmem_alloc) != 1);
+ #ifdef __UNIT_TEST__
+ 	{
