@@ -1,0 +1,104 @@
+# nic node1: if=ens1f1np1 ko_md5=09eb44c03855 kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 mtu=1500 smt=off cpus=0-9 cstates_on=POLL, no_turbo=1 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,poll_usecs=50
+# nic node0: if=ens1f1np1 ko_md5=09eb44c03855 kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 mtu=1500 smt=off cpus=0-9 cstates_on=POLL, no_turbo=1 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,poll_usecs=50
+RUN base 8k-same:same:8192:100 rep=1 kops=185.78 p50=531.14 p99=580.1 misses_per_kpkt=216.3 sirq_ns_per_pkt=474 rxq=0:100%
+RUN base 8k-same:same:8192:100 rep=2 kops=185.92 p50=531.25 p99=591.1 misses_per_kpkt=215.5 sirq_ns_per_pkt=474 rxq=0:100%
+RUN base 8k-same:same:8192:100 rep=3 kops=185.37 p50=532.31 p99=592.3 misses_per_kpkt=217.8 sirq_ns_per_pkt=475 rxq=0:100%
+RUN base 8k-same:same:8192:100 rep=4 kops=185.33 p50=532.45 p99=581.1 misses_per_kpkt=216.5 sirq_ns_per_pkt=475 rxq=0:100%
+RUN base 8k-same:same:8192:100 rep=5 kops=185.01 p50=533.84 p99=584.2 misses_per_kpkt=217.6 sirq_ns_per_pkt=476 rxq=0:100%
+MEDIAN base 8k-same:same:8192:100 runs=5 kops=185.37 p50=532.31 p99=584.2 misses_per_kpkt=216.5 sirq_ns_per_pkt=475
+RUN base 64k-same:same:65536:20 rep=1 kops=16.03 p50=1119.89 p99=1289.7 misses_per_kpkt=139.6 sirq_ns_per_pkt=359 rxq=0:100%
+RUN base 64k-same:same:65536:20 rep=2 kops=16.01 p50=1121.22 p99=1299.0 misses_per_kpkt=139.0 sirq_ns_per_pkt=359 rxq=0:100%
+RUN base 64k-same:same:65536:20 rep=3 kops=16.05 p50=1117.84 p99=1289.6 misses_per_kpkt=133.9 sirq_ns_per_pkt=343 rxq=0:100%
+RUN base 64k-same:same:65536:20 rep=4 kops=16.06 p50=1118.62 p99=1269.6 misses_per_kpkt=125.1 sirq_ns_per_pkt=316 rxq=0:100%
+RUN base 64k-same:same:65536:20 rep=5 kops=16.07 p50=1118.51 p99=1294.1 misses_per_kpkt=138.6 sirq_ns_per_pkt=358 rxq=0:100%
+MEDIAN base 64k-same:same:65536:20 runs=5 kops=16.05 p50=1118.62 p99=1289.7 misses_per_kpkt=138.6 sirq_ns_per_pkt=358
+RUN base 64k-hijack:hijack:65536:20 rep=1 kops=28.34 p50=674.23 p99=1137.5 misses_per_kpkt=124.8 sirq_ns_per_pkt=330 rxq=0:50%,1:50%
+RUN base 64k-hijack:hijack:65536:20 rep=2 kops=28.34 p50=674.04 p99=1133.1 misses_per_kpkt=124.9 sirq_ns_per_pkt=330 rxq=0:50%,1:50%
+RUN base 64k-hijack:hijack:65536:20 rep=3 kops=15.86 p50=1123.25 p99=1404.9 misses_per_kpkt=121.9 sirq_ns_per_pkt=296 rxq=0:50%,1:50%
+RUN base 64k-hijack:hijack:65536:20 rep=4 kops=28.35 p50=673.28 p99=1128.2 misses_per_kpkt=124.9 sirq_ns_per_pkt=330 rxq=0:50%,1:50%
+RUN base 64k-hijack:hijack:65536:20 rep=5 kops=15.88 p50=1123.14 p99=1402.3 misses_per_kpkt=122.4 sirq_ns_per_pkt=298 rxq=0:50%,1:50%
+MEDIAN base 64k-hijack:hijack:65536:20 runs=5 kops=28.34 p50=674.23 p99=1137.5 misses_per_kpkt=124.8 sirq_ns_per_pkt=330
+RUN base 64k-gen2:gen2:65536:20 rep=1 kops=22.55 p50=792.00 p99=1064.7 misses_per_kpkt=85.2 sirq_ns_per_pkt=352 rxq=0:100%
+RUN base 64k-gen2:gen2:65536:20 rep=2 kops=22.50 p50=794.93 p99=1067.4 misses_per_kpkt=86.4 sirq_ns_per_pkt=355 rxq=0:100%
+RUN base 64k-gen2:gen2:65536:20 rep=3 kops=22.50 p50=794.81 p99=1061.0 misses_per_kpkt=86.2 sirq_ns_per_pkt=355 rxq=0:100%
+RUN base 64k-gen2:gen2:65536:20 rep=4 kops=22.56 p50=791.80 p99=1064.7 misses_per_kpkt=84.9 sirq_ns_per_pkt=350 rxq=0:100%
+RUN base 64k-gen2:gen2:65536:20 rep=5 kops=22.54 p50=793.54 p99=1066.1 misses_per_kpkt=85.9 sirq_ns_per_pkt=353 rxq=0:100%
+MEDIAN base 64k-gen2:gen2:65536:20 runs=5 kops=22.54 p50=793.54 p99=1064.7 misses_per_kpkt=85.9 sirq_ns_per_pkt=353
+# nic node1: if=ens1f1np1 ko_md5=aae94c9d2b80 kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 mtu=1500 smt=off cpus=0-9 cstates_on=POLL, no_turbo=1 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,poll_usecs=50
+# nic node0: if=ens1f1np1 ko_md5=aae94c9d2b80 kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 mtu=1500 smt=off cpus=0-9 cstates_on=POLL, no_turbo=1 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,poll_usecs=50
+RUN v2 8k-same:same:8192:100 rep=1 kops=204.96 p50=480.48 p99=533.4 misses_per_kpkt=8.4 sirq_ns_per_pkt=389 rxq=0:100%
+RUN v2 8k-same:same:8192:100 rep=2 kops=205.46 p50=479.36 p99=526.4 misses_per_kpkt=8.6 sirq_ns_per_pkt=388 rxq=0:100%
+RUN v2 8k-same:same:8192:100 rep=3 kops=205.24 p50=479.86 p99=532.9 misses_per_kpkt=8.5 sirq_ns_per_pkt=387 rxq=0:100%
+RUN v2 8k-same:same:8192:100 rep=4 kops=205.58 p50=478.85 p99=526.5 misses_per_kpkt=8.4 sirq_ns_per_pkt=387 rxq=0:100%
+RUN v2 8k-same:same:8192:100 rep=5 kops=205.12 p50=480.06 p99=528.5 misses_per_kpkt=8.4 sirq_ns_per_pkt=388 rxq=0:100%
+MEDIAN v2 8k-same:same:8192:100 runs=5 kops=205.24 p50=479.86 p99=528.5 misses_per_kpkt=8.4 sirq_ns_per_pkt=388
+RUN v2 64k-same:same:65536:20 rep=1 kops=16.94 p50=1060.25 p99=1237.8 misses_per_kpkt=25.4 sirq_ns_per_pkt=292 rxq=0:100%
+RUN v2 64k-same:same:65536:20 rep=2 kops=16.94 p50=1060.59 p99=1231.9 misses_per_kpkt=26.2 sirq_ns_per_pkt=266 rxq=0:100%
+RUN v2 64k-same:same:65536:20 rep=3 kops=16.89 p50=1062.24 p99=1238.4 misses_per_kpkt=25.6 sirq_ns_per_pkt=288 rxq=0:100%
+RUN v2 64k-same:same:65536:20 rep=4 kops=16.94 p50=1059.69 p99=1238.7 misses_per_kpkt=26.1 sirq_ns_per_pkt=288 rxq=0:100%
+RUN v2 64k-same:same:65536:20 rep=5 kops=16.87 p50=1063.49 p99=1240.7 misses_per_kpkt=25.5 sirq_ns_per_pkt=293 rxq=0:100%
+MEDIAN v2 64k-same:same:65536:20 runs=5 kops=16.94 p50=1060.59 p99=1238.4 misses_per_kpkt=25.6 sirq_ns_per_pkt=288
+RUN v2 64k-hijack:hijack:65536:20 rep=1 kops=29.55 p50=643.67 p99=1080.0 misses_per_kpkt=28.8 sirq_ns_per_pkt=274 rxq=0:50%,1:50%
+RUN v2 64k-hijack:hijack:65536:20 rep=2 kops=29.63 p50=642.00 p99=1076.8 misses_per_kpkt=28.5 sirq_ns_per_pkt=273 rxq=0:50%,1:50%
+RUN v2 64k-hijack:hijack:65536:20 rep=3 kops=16.73 p50=1066.24 p99=1326.8 misses_per_kpkt=33.9 sirq_ns_per_pkt=240 rxq=0:50%,1:50%
+RUN v2 64k-hijack:hijack:65536:20 rep=4 kops=29.60 p50=642.84 p99=1076.2 misses_per_kpkt=28.9 sirq_ns_per_pkt=274 rxq=0:50%,1:50%
+RUN v2 64k-hijack:hijack:65536:20 rep=5 kops=16.74 p50=1065.09 p99=1332.5 misses_per_kpkt=33.9 sirq_ns_per_pkt=242 rxq=0:50%,1:50%
+MEDIAN v2 64k-hijack:hijack:65536:20 runs=5 kops=29.55 p50=643.67 p99=1080.0 misses_per_kpkt=28.9 sirq_ns_per_pkt=273
+RUN v2 64k-gen2:gen2:65536:20 rep=1 kops=22.54 p50=791.26 p99=1075.3 misses_per_kpkt=25.2 sirq_ns_per_pkt=322 rxq=0:100%
+RUN v2 64k-gen2:gen2:65536:20 rep=2 kops=22.57 p50=790.92 p99=1072.6 misses_per_kpkt=25.2 sirq_ns_per_pkt=321 rxq=0:100%
+RUN v2 64k-gen2:gen2:65536:20 rep=3 kops=22.55 p50=791.70 p99=1073.6 misses_per_kpkt=25.1 sirq_ns_per_pkt=321 rxq=0:100%
+RUN v2 64k-gen2:gen2:65536:20 rep=4 kops=22.55 p50=792.29 p99=1071.2 misses_per_kpkt=25.5 sirq_ns_per_pkt=321 rxq=0:100%
+RUN v2 64k-gen2:gen2:65536:20 rep=5 kops=22.56 p50=790.73 p99=1072.6 misses_per_kpkt=25.2 sirq_ns_per_pkt=320 rxq=0:100%
+MEDIAN v2 64k-gen2:gen2:65536:20 runs=5 kops=22.55 p50=791.26 p99=1072.6 misses_per_kpkt=25.2 sirq_ns_per_pkt=321
+# nic node1: if=ens1f1np1 ko_md5=09eb44c03855 kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 mtu=1500 smt=off cpus=0-9 cstates_on=POLL, no_turbo=1 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,poll_usecs=50
+# nic node0: if=ens1f1np1 ko_md5=09eb44c03855 kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 mtu=1500 smt=off cpus=0-9 cstates_on=POLL, no_turbo=1 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,poll_usecs=50
+RUN base 8k-same:same:8192:100 rep=1 kops=185.18 p50=532.99 p99=584.2 misses_per_kpkt=215.9 sirq_ns_per_pkt=475 rxq=0:100%
+RUN base 8k-same:same:8192:100 rep=2 kops=185.25 p50=532.71 p99=583.4 misses_per_kpkt=217.2 sirq_ns_per_pkt=475 rxq=0:100%
+RUN base 8k-same:same:8192:100 rep=3 kops=184.95 p50=533.69 p99=587.4 misses_per_kpkt=216.9 sirq_ns_per_pkt=475 rxq=0:100%
+RUN base 8k-same:same:8192:100 rep=4 kops=185.60 p50=531.98 p99=581.4 misses_per_kpkt=216.2 sirq_ns_per_pkt=474 rxq=0:100%
+RUN base 8k-same:same:8192:100 rep=5 kops=185.58 p50=531.62 p99=580.9 misses_per_kpkt=216.3 sirq_ns_per_pkt=473 rxq=0:100%
+MEDIAN base 8k-same:same:8192:100 runs=5 kops=185.25 p50=532.71 p99=583.4 misses_per_kpkt=216.3 sirq_ns_per_pkt=475
+RUN base 64k-same:same:65536:20 rep=1 kops=16.04 p50=1119.61 p99=1294.7 misses_per_kpkt=137.0 sirq_ns_per_pkt=351 rxq=0:100%
+RUN base 64k-same:same:65536:20 rep=2 kops=16.08 p50=1117.61 p99=1295.3 misses_per_kpkt=135.7 sirq_ns_per_pkt=350 rxq=0:100%
+RUN base 64k-same:same:65536:20 rep=3 kops=16.09 p50=1116.65 p99=1290.7 misses_per_kpkt=130.0 sirq_ns_per_pkt=332 rxq=0:100%
+RUN base 64k-same:same:65536:20 rep=4 kops=16.04 p50=1119.42 p99=1297.2 misses_per_kpkt=134.5 sirq_ns_per_pkt=349 rxq=0:100%
+RUN base 64k-same:same:65536:20 rep=5 kops=16.04 p50=1118.88 p99=1297.6 misses_per_kpkt=135.8 sirq_ns_per_pkt=350 rxq=0:100%
+MEDIAN base 64k-same:same:65536:20 runs=5 kops=16.04 p50=1118.88 p99=1295.3 misses_per_kpkt=135.7 sirq_ns_per_pkt=350
+RUN base 64k-hijack:hijack:65536:20 rep=1 kops=28.39 p50=674.20 p99=1129.2 misses_per_kpkt=125.0 sirq_ns_per_pkt=330 rxq=0:50%,1:50%
+RUN base 64k-hijack:hijack:65536:20 rep=2 kops=28.39 p50=674.61 p99=1126.5 misses_per_kpkt=124.2 sirq_ns_per_pkt=330 rxq=0:50%,1:50%
+RUN base 64k-hijack:hijack:65536:20 rep=3 kops=15.86 p50=1123.56 p99=1407.6 misses_per_kpkt=122.2 sirq_ns_per_pkt=297 rxq=0:50%,1:50%
+RUN base 64k-hijack:hijack:65536:20 rep=4 kops=28.39 p50=673.73 p99=1126.9 misses_per_kpkt=125.4 sirq_ns_per_pkt=330 rxq=0:50%,1:50%
+RUN base 64k-hijack:hijack:65536:20 rep=5 kops=15.87 p50=1122.46 p99=1412.7 misses_per_kpkt=122.6 sirq_ns_per_pkt=299 rxq=0:50%,1:50%
+MEDIAN base 64k-hijack:hijack:65536:20 runs=5 kops=28.39 p50=674.61 p99=1129.2 misses_per_kpkt=124.2 sirq_ns_per_pkt=330
+RUN base 64k-gen2:gen2:65536:20 rep=1 kops=22.54 p50=793.09 p99=1058.1 misses_per_kpkt=86.6 sirq_ns_per_pkt=356 rxq=0:100%
+RUN base 64k-gen2:gen2:65536:20 rep=2 kops=22.57 p50=791.99 p99=1061.0 misses_per_kpkt=85.3 sirq_ns_per_pkt=352 rxq=0:100%
+RUN base 64k-gen2:gen2:65536:20 rep=3 kops=22.52 p50=793.05 p99=1065.2 misses_per_kpkt=84.7 sirq_ns_per_pkt=351 rxq=0:100%
+RUN base 64k-gen2:gen2:65536:20 rep=4 kops=22.52 p50=793.29 p99=1071.8 misses_per_kpkt=84.4 sirq_ns_per_pkt=350 rxq=0:100%
+RUN base 64k-gen2:gen2:65536:20 rep=5 kops=22.56 p50=791.69 p99=1060.7 misses_per_kpkt=84.5 sirq_ns_per_pkt=349 rxq=0:100%
+MEDIAN base 64k-gen2:gen2:65536:20 runs=5 kops=22.54 p50=793.05 p99=1061.0 misses_per_kpkt=84.7 sirq_ns_per_pkt=351
+# nic node1: if=ens1f1np1 ko_md5=aae94c9d2b80 kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 mtu=1500 smt=off cpus=0-9 cstates_on=POLL, no_turbo=1 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,poll_usecs=50
+# nic node0: if=ens1f1np1 ko_md5=aae94c9d2b80 kernel=6.17.8-061708-generic fw=14.18.2030 rules=0 xps_tx0=00001 coalesce=adaptrxoff,adapttxoff,rxus0,rxfr1,txus5 mtu=1500 smt=off cpus=0-9 cstates_on=POLL, no_turbo=1 gov=performance homa:link_mbps=25000,num_priorities=8,unsched_bytes=60000,max_incoming=480000,max_gso_size=10000,poll_usecs=50
+RUN v2 8k-same:same:8192:100 rep=1 kops=204.69 p50=481.09 p99=529.2 misses_per_kpkt=8.4 sirq_ns_per_pkt=389 rxq=0:100%
+RUN v2 8k-same:same:8192:100 rep=2 kops=205.48 p50=479.12 p99=527.9 misses_per_kpkt=8.4 sirq_ns_per_pkt=388 rxq=0:100%
+RUN v2 8k-same:same:8192:100 rep=3 kops=204.94 p50=480.46 p99=530.5 misses_per_kpkt=8.4 sirq_ns_per_pkt=388 rxq=0:100%
+RUN v2 8k-same:same:8192:100 rep=4 kops=204.88 p50=480.67 p99=529.5 misses_per_kpkt=8.6 sirq_ns_per_pkt=389 rxq=0:100%
+RUN v2 8k-same:same:8192:100 rep=5 kops=205.08 p50=480.00 p99=527.6 misses_per_kpkt=8.4 sirq_ns_per_pkt=387 rxq=0:100%
+MEDIAN v2 8k-same:same:8192:100 runs=5 kops=204.94 p50=480.46 p99=529.2 misses_per_kpkt=8.4 sirq_ns_per_pkt=388
+RUN v2 64k-same:same:65536:20 rep=1 kops=16.85 p50=1064.36 p99=1237.7 misses_per_kpkt=26.1 sirq_ns_per_pkt=290 rxq=0:100%
+RUN v2 64k-same:same:65536:20 rep=2 kops=16.87 p50=1064.23 p99=1242.7 misses_per_kpkt=25.7 sirq_ns_per_pkt=294 rxq=0:100%
+RUN v2 64k-same:same:65536:20 rep=3 kops=16.91 p50=1061.40 p99=1236.8 misses_per_kpkt=25.7 sirq_ns_per_pkt=294 rxq=0:100%
+RUN v2 64k-same:same:65536:20 rep=4 kops=16.88 p50=1064.98 p99=1243.6 misses_per_kpkt=26.0 sirq_ns_per_pkt=284 rxq=0:100%
+RUN v2 64k-same:same:65536:20 rep=5 kops=16.88 p50=1063.56 p99=1238.0 misses_per_kpkt=26.0 sirq_ns_per_pkt=286 rxq=0:100%
+MEDIAN v2 64k-same:same:65536:20 runs=5 kops=16.88 p50=1064.23 p99=1238.0 misses_per_kpkt=26.0 sirq_ns_per_pkt=290
+RUN v2 64k-hijack:hijack:65536:20 rep=1 kops=29.56 p50=645.07 p99=1084.2 misses_per_kpkt=28.5 sirq_ns_per_pkt=274 rxq=0:50%,1:50%
+RUN v2 64k-hijack:hijack:65536:20 rep=2 kops=29.52 p50=644.18 p99=1086.0 misses_per_kpkt=28.8 sirq_ns_per_pkt=274 rxq=0:50%,1:50%
+RUN v2 64k-hijack:hijack:65536:20 rep=3 kops=16.75 p50=1065.14 p99=1320.5 misses_per_kpkt=33.9 sirq_ns_per_pkt=240 rxq=0:50%,1:50%
+RUN v2 64k-hijack:hijack:65536:20 rep=4 kops=29.62 p50=642.40 p99=1073.4 misses_per_kpkt=28.6 sirq_ns_per_pkt=274 rxq=0:50%,1:50%
+RUN v2 64k-hijack:hijack:65536:20 rep=5 kops=16.74 p50=1065.54 p99=1324.4 misses_per_kpkt=33.4 sirq_ns_per_pkt=242 rxq=0:50%,1:50%
+MEDIAN v2 64k-hijack:hijack:65536:20 runs=5 kops=29.52 p50=645.07 p99=1086.0 misses_per_kpkt=28.8 sirq_ns_per_pkt=274
+RUN v2 64k-gen2:gen2:65536:20 rep=1 kops=22.57 p50=790.91 p99=1072.4 misses_per_kpkt=25.5 sirq_ns_per_pkt=322 rxq=0:100%
+RUN v2 64k-gen2:gen2:65536:20 rep=2 kops=22.53 p50=791.38 p99=1077.5 misses_per_kpkt=25.2 sirq_ns_per_pkt=321 rxq=0:100%
+RUN v2 64k-gen2:gen2:65536:20 rep=3 kops=22.55 p50=790.86 p99=1074.1 misses_per_kpkt=25.7 sirq_ns_per_pkt=319 rxq=0:100%
+RUN v2 64k-gen2:gen2:65536:20 rep=4 kops=22.55 p50=790.92 p99=1068.2 misses_per_kpkt=25.6 sirq_ns_per_pkt=319 rxq=0:100%
+RUN v2 64k-gen2:gen2:65536:20 rep=5 kops=22.54 p50=791.84 p99=1071.8 misses_per_kpkt=25.6 sirq_ns_per_pkt=319 rxq=0:100%
+MEDIAN v2 64k-gen2:gen2:65536:20 runs=5 kops=22.55 p50=790.92 p99=1072.4 misses_per_kpkt=25.6 sirq_ns_per_pkt=319
